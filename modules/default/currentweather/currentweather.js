@@ -1,14 +1,11 @@
 Module.register("currentweather", {
 
   defaults: {
-    // location is blank by default. User input will determine the location via city name or postal createTextNode
     // We will need to implement logic to extract location from watson text response.
-    location: "",
     units: "units=e",
     //Location needs to be appended to the baseURL to make query.
-    apiBaseUrl: "twcservice.mybluemix.net:443/api/weather/v3/location/",
     language:"language=en-US",
-    format: ".json";
+    format: ".json?";
   },
 
   getHeader: function(){
@@ -80,7 +77,29 @@ Module.register("currentweather", {
   },
 
   weatherGetter: function(){
+    var url ="https://" + this.config.username + ":" + this.config.password +"@" + this.config.apiBaseUrl + this.config.latitude + "/" + this.config.longitude + "/" + this.config.endpoint + this.defaults.format + this.defaults.language;
 
+    var self = this;
+
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", url);
+    xhr.onreadystatechange = function(){
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        self.parsedDataSetter(JSON.parse(this.response));
+      } else {
+        Log.error(this.name + "Could not load")
+      }
+    }
+    xhr.send()
+  },
+
+  parsedDataSetter: function(data){
+    this.temperature = data.observation.temp; // temp
+    this.phrase = data.observation.wx_phrase; // wx_phrase
+    this.feelsLike = data.observation.feels_like; // feels_like
+    this.uvIndex = data.observation.uv_index; // uv_index
+    this.wind = data.observation.wdir_cardinal; // wdir_cardinal
+    this.icon = data.observation.wx_icon; // refer to docs for function to retrive image. wx_icon
   }
 
 });
