@@ -14,7 +14,7 @@
 * Follow the instructions in http://www.instructables.com/id/Build-a-Talking-Robot-With-Watson-and-Raspberry-Pi/ to
 * get the system ready to run this code.
 */
-Module.register("modulename",{
+Module.register("conversation",{
 
 var watson = require('watson-developer-cloud'); //to connect to Watson developer cloud
 var config = require("./config.js") // to get our credentials and the attention word from the config.js files
