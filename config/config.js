@@ -11,12 +11,12 @@ untis: 'imperial',
         position: 'top_right',
 
         config: {
-          location: "NYC, NY"
+          location: "NYC, NY",
           latitude: "40.73",
           longitude: "-73.94",
-          apiBaseURL: "twcservice.mybluemix.net/api/weather/v1/geocode/"
+          apiBaseURL: "twcservice.mybluemix.net/api/weather/v1/geocode/",
           username: "5a6159b6-edb8-4741-9584-140d1f1506f2",
-          password: ""
+          password: "",
           endpoint: "observations"
 
         }
