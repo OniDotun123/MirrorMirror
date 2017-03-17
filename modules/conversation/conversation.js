@@ -14,6 +14,7 @@
 * Follow the instructions in http://www.instructables.com/id/Build-a-Talking-Robot-With-Watson-and-Raspberry-Pi/ to
 * get the system ready to run this code.
 */
+Module.register("modulename",{
 
 var watson = require('watson-developer-cloud'); //to connect to Watson developer cloud
 var config = require("./config.js") // to get our credentials and the attention word from the config.js files
@@ -138,13 +139,13 @@ textStream.on('data', function(str) {
         console.log('error:', err);
       } else {
         context = response.context ; //update conversation context
-        
+
         if (Array.isArray(response.output.text)) {
           conversation_response = response.output.text.join(' ').trim();
         } else {
           conversation_response = undefined;
         }
-        
+
         if (conversation_response){
           var params = {
             text: conversation_response,
@@ -182,4 +183,6 @@ textStream.on('error', function(err) {
   console.log(' === Watson Speech to Text : An Error has occurred =====') ; // handle errors
   console.log(err) ;
   console.log("Press <ctrl>+C to exit.") ;
+});
+
 });
