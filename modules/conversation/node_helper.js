@@ -72,7 +72,63 @@ module.exports = NodeHelper.create({
       textStream.setEncoding('utf8');
       textStream.on('data', function(str){
         console.log(' ===== Speech to Text ===== : ' + str)
-      })
-  },
+        if (str.toLowerCase().indexOf(attentionWord.toLowerCase()) >= 0) {
+  var res = str.toLowerCase().replace(attentionWord.toLowerCase(), "");
+  console.log("msg sent to conversation:" ,res);
+  conversation.message({
+    workspace_id: config.ConWorkspace,
+    input: {'text': res},
+    context: context
+  },  function(err, response) {
+    if (err) {
+      console.log('error:', err);
+    } else {
+      context = response.context ; //update conversation context
 
+      if (Array.isArray(response.output.text)) {
+        conversation_response = response.output.text.join(' ').trim();
+      } else {
+        conversation_response = undefined;
+      }
+
+      if (conversation_response){
+        var params = {
+          text: conversation_response,
+          voice: config.voice,
+          accept: 'audio/wav'
+        };
+
+        console.log("Result from conversation:" ,conversation_response);
+        /*********************************************************************
+        Step #5: Speak out the response
+        *********************************************************************
+        In this step, we text is sent out to Watsons Text to Speech service and result is piped to wave file.
+        Wave files are then played using alsa (native audio) tool.
+        */
+        tempStream = text_to_speech.synthesize(params).pipe(fs.createWriteStream('output.wav')).on('close', function() {
+          var create_audio = exec('aplay output.wav', function (error, stdout, stderr) {
+            if (error !== null) {
+              console.log('exec error: ' + error);
+            }
+          });
+        });
+      }else {
+        console.log("The response (output) text from your conversation is empty. Please check your conversation flow \n" + JSON.stringify( response))
+      }
+
+    }
+
+  })
+} else {
+  console.log("Waiting to hear", attentionWord);
+}
+});
+
+textStream.on('error', function(err) {
+console.log(' === Watson Speech to Text : An Error has occurred =====') ; // handle errors
+console.log(err) ;
+console.log("Press <ctrl>+C to exit.") ;
+});
+
+  },
 });
