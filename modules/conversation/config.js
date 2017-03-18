@@ -14,8 +14,8 @@ exports.attentionWord = "watson"
 
 // Credentials for Watson Speech to Text service
 
-exports.STTPassword = 'zfnRfEzlTJJy' ;
-exports.STTUsername = '53876ec2-fe5e-44e5-ba04-dd2190717978' ;
+exports.STTPassword = '' ;
+exports.STTUsername = '' ;
 
 
 // Credentials for Watson Conversation service
