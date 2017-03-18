@@ -64,3 +64,6 @@ Temporary Items
 
 # Ignore changes to the custom css files.
 /css/custom.css
+
+#Ignore config files with sensitive information.
+!config/config.js
