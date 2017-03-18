@@ -30,6 +30,7 @@ var config = {
     {
         module: 'currentweather',
         position: 'top_right',
+        header: "New York City",
         config: {
           location: "NYC, NY",
           latitude: "40.73",
