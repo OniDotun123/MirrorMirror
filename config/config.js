@@ -41,6 +41,9 @@ var config = {
           endpoint: "observations"
 
         }
+    },
+    {
+      module: 'conversation'
     }
   ]
 
