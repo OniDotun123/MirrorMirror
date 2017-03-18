@@ -39,12 +39,11 @@ var config = {
           username: "5a6159b6-edb8-4741-9584-140d1f1506f2",
           password: "rnag46J0ue",
           endpoint: "observations"
-
         }
     },
     {
       module: 'conversation'
-    }
+		}
   ]
 
 };
