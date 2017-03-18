@@ -74,4 +74,5 @@ module.exports = NodeHelper.create({
         console.log(' ===== Speech to Text ===== : ' + str)
       })
   },
+
 });
