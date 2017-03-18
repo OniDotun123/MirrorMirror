@@ -15,18 +15,18 @@ var speech_to_text = watson.speech_to_text({
   version: 'v1'
 });
 
-// var conversation = watson.conversation({
-//   username: config.ConUsername,
-//   password: config.ConPassword,
-//   version: 'v1',
-//   version_date: '2016-07-11'
-// });
-//
-// var text_to_speech = watson.text_to_speech({
-//   username: config.TTSUsername,
-//   password: config.TTSPassword,
-//   version: 'v1'
-// });
+var conversation = watson.conversation({
+  username: config.ConUsername,
+  password: config.ConPassword,
+  version: 'v1',
+  version_date: '2016-07-11'
+});
+
+var text_to_speech = watson.text_to_speech({
+  username: config.TTSUsername,
+  password: config.TTSPassword,
+  version: 'v1'
+});
 var NodeHelper = require("node_helper");
 
 module.exports = NodeHelper.create({
@@ -99,12 +99,7 @@ module.exports = NodeHelper.create({
         };
 
         console.log("Result from conversation:" ,conversation_response);
-        /*********************************************************************
-        Step #5: Speak out the response
-        *********************************************************************
-        In this step, we text is sent out to Watsons Text to Speech service and result is piped to wave file.
-        Wave files are then played using alsa (native audio) tool.
-        */
+    
         tempStream = text_to_speech.synthesize(params).pipe(fs.createWriteStream('output.wav')).on('close', function() {
           var create_audio = exec('aplay output.wav', function (error, stdout, stderr) {
             if (error !== null) {
