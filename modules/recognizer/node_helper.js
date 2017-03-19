@@ -1,10 +1,8 @@
 var NodeHelper = require("node_helper");
+const exec = require('child_process').exec;
 
 module.exports = NodeHelper.create({
 
-  getScripts: function() {
-    // return ["webcam.js"];
-  },
 
   socketNotificationReceived: function(notification) {
     if (notification === "RECOGNIZER_STARTUP"){

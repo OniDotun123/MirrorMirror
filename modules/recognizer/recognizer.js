@@ -1,4 +1,9 @@
 Module.register("recognizer",{
+
+  getScripts: function() {
+    // return ["webcam.js"];
+  },
+
   start() {
     console.log("Recognizer started");
     this.sendSocketNotification("RECOGNIZER_STARTUP");
