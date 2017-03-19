@@ -1,5 +1,13 @@
 Module.register("trafficincidents", {
 
+  defaults:{
+    baseUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
+    CK: "",
+    TL: "40.71",
+    TR: "-73.999",
+    BL: "40.69",
+    BR: "-74.02"
+  },
 
   getHeader: function(){
     return this.data.header //This is gonna be added in config.js file
@@ -28,9 +36,11 @@ Module.register("trafficincidents", {
     // this.eventText4 = null;
     // this.severity4 = null;
 
-    this.getTrafficData();
+    this.sendSocketNotification("TRAFFIC", this.defaults);
     this.loaded = false;
   },
+
+
 
   getDom: function(){
 
@@ -113,24 +123,33 @@ Module.register("trafficincidents", {
     // return div4
   },
 
-  getTrafficData: function(){
-    var baseUrl = "http://www.mapquestapi.com/traffic/v2/incidents?key=";
-    var apiUrl = baseUrl + this.config.CK + "&boundingBox=" + this.config.TL + "," + this.config.TR + "," + this.config.BL + "," + this.config.BR;
-
-    var self = this;
-
-    var xhr = new XMLHttpRequest()
-
-    xhr.open("GET", apiUrl);
-
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-  
-        self.parsedDataSetter(JSON.parse(this.response));
+  socketNotificationReceived: function(notification, payload){
+    Log.log("notification recieved from Node Helper");
+    if(notification === "TRAFFIC_ALERTS"){
+      debugger;
+      this.parsedDataSetter(payload);
+      this.updateDom()
     }
-  }
-  xhr.send()
-},
+  },
+
+//   getTrafficData: function(){
+//     var baseUrl = "http://www.mapquestapi.com/traffic/v2/incidents?key=";
+//     var apiUrl = baseUrl + this.config.CK + "&boundingBox=" + this.config.TL + "," + this.config.TR + "," + this.config.BL + "," + this.config.BR;
+//
+//     var self = this;
+//
+//     var xhr = new XMLHttpRequest()
+//
+//     xhr.open("GET", apiUrl);
+//
+//     xhr.onreadystatechange = function(){
+//       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+//
+//         self.parsedDataSetter(JSON.parse(this.response));
+//     }
+//   }
+//   xhr.send()
+// },
 
 parsedDataSetter: function(data){
   this.fullDescription1 = data["incidents"][0]["fullDesc"];
