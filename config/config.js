@@ -41,6 +41,12 @@ var config = {
           endpoint: "observations"
 
         }
+    },
+    {
+        module: 'news',
+        position: 'bottom_right',
+        header: "News"
+
     }
   ]
 
