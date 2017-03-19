@@ -67,4 +67,4 @@ Temporary Items
 
 #Ignore config files with sensitive information.
 !config/config.js
-!/modules/conversation/config.js
+/modules/conversation/config.js
