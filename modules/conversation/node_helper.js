@@ -31,7 +31,20 @@ var NodeHelper = require("node_helper");
 
 module.exports = NodeHelper.create({
 
-  start: function() {
+  start() {
+    this.started = false;
+  },
+
+  socketNotificationReceived: function(notification, payload){
+    if (notification === "CONNECT"){
+      console.log("******************************************************")
+      console.log("The socket has received notification!!!!!!!!!!!!!!!!!!!!!")
+      this.startWatsonConversation();
+      return;
+    }
+  },
+
+  startWatsonConversation: function() {
       var self = this;
 
       console.log("Starting node helper for " + self.name)
@@ -75,6 +88,7 @@ module.exports = NodeHelper.create({
         if (str.toLowerCase().indexOf(attentionWord.toLowerCase()) >= 0) {
           var res = str.toLowerCase().replace(attentionWord.toLowerCase(), "");
           console.log("msg sent to conversation:" ,res);
+          self.sendSocketNotification("KEYWORD_SPOTTED", res);
           conversation.message({
             workspace_id: config.ConWorkspace,
             input: {'text': res},
@@ -88,7 +102,7 @@ module.exports = NodeHelper.create({
             if (Array.isArray(response.output.text)) {
 
               conversation_response = response.output.text.join(' ').trim();                 //         # this is where the error is occuring
-              
+
             } else {
               conversation_response = undefined;
             }
@@ -101,6 +115,8 @@ module.exports = NodeHelper.create({
               };
 
               console.log("Result from conversation:" ,conversation_response);
+
+              // self.sendSocketNotification("KEYWORD_SPOTTED", conversation_response);
 
               tempStream = text_to_speech.synthesize(params).pipe(fs.createWriteStream('output.wav')).on('close', function() {
                 var create_audio = exec('aplay output.wav', function (error, stdout, stderr) {
