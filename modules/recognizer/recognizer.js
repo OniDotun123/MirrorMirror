@@ -1,7 +1,7 @@
 Module.register("recognizer",{
   start() {
     console.log("Recognizer started");
-    this.sendSocketNotification("CONNECT");
+    this.sendSocketNotification("RECOGNIZER_STARTUP");
     return;
   },
 
@@ -13,12 +13,12 @@ Module.register("recognizer",{
       return;
     }
 
-    if(notification === "login") {
+    if(notification === "selfie") {
+      console.log("=============================");
+      console.log("recieved request for picture!")
       sendSocketNotification("TAKE_SELFIE");
       return;
     }
 	}
-
-
 
 });

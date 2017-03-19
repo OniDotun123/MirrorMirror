@@ -14,6 +14,7 @@ var speech_to_text = watson.speech_to_text({
   version: 'v1'
 });
 
+
 var conversation = watson.conversation({
   username: config.ConUsername,
   password: config.ConPassword,
