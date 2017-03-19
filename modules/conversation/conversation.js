@@ -1,7 +1,8 @@
 Module.register("conversation",{
   start: function() {
     this.sendSocketNotification("CONNECT")
-  }
+    console.log("sent notification to node_helper")
+  },
 
   socketNotificationReceived: function(notification, payload){
         if (notification === "KEYWORD_SPOTTED"){

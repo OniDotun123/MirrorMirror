@@ -33,21 +33,22 @@ module.exports = NodeHelper.create({
 
   start() {
     this.started = false;
+    console.log("Initialized Node Helper for: " + this.name)
   },
 
   socketNotificationReceived: function(notification, payload){
     if (notification === "CONNECT"){
       console.log("******************************************************")
-      console.log("The socket has received notification!!!!!!!!!!!!!!!!!!!!!")
+      console.log("The socket has received notification")
       this.startWatsonConversation();
       return;
     }
   },
 
   startWatsonConversation: function() {
+    console.log("Initializing Watson");
       var self = this;
 
-      console.log("Starting node helper for " + self.name)
       console.log("");
 
       micInputStream.on('data', function(data) {
