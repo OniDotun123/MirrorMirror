@@ -55,7 +55,6 @@ module.exports = NodeHelper.create({
       });
 
       micInputStream.on('error', function(err) {
-        console.log("%%%%%%%%%%%% error in input stream %%%%%%%%%%")
         console.log("Error in Input Stream: " + err);
       });
 
@@ -141,6 +140,7 @@ module.exports = NodeHelper.create({
     });
 
   textStream.on('error', function(err) {
+  console.log("%%%%%%%%%%%% error in input stream %%%%%%%%%%")
   console.log(' === Watson Speech to Text : An Error has occurred =====') ; // handle errors
   console.log(err) ;
   console.log("Press <ctrl>+C to exit.") ;
