@@ -15,16 +15,15 @@ Module.register("recognizer",{
 
     if (notification === "RECOGNIZER_CONNECTED"){
       console.log("Recognizer initialized, awaiting Activation");
-      return;
+
     }
   },
 
   notificationReceived: function(notification) {
     if(notification === "picture") {
-      console.log("=============================");
-      console.log("recieved request for picture!")
+      console.log("==========pic request===================");
       this.sendSocketNotification("TAKE_SELFIE");
-      return;
+      
     }
 	}
 
