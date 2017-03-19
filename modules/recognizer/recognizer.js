@@ -13,7 +13,7 @@ Module.register("recognizer",{
       return;
     }
 
-    if(notification === "selfie") {
+    if(notification === "picture") {
       console.log("=============================");
       console.log("recieved request for picture!")
       sendSocketNotification("TAKE_SELFIE");
