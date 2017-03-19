@@ -18,7 +18,7 @@ Module.register("recognizer",{
     if(notification === "picture") {
       console.log("=============================");
       console.log("recieved request for picture!")
-      sendSocketNotification("TAKE_SELFIE");
+      this.sendSocketNotification("TAKE_SELFIE");
       return;
     }
 	}
