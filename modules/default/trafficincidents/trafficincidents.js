@@ -8,6 +8,10 @@ Module.register("trafficincidents", {
     return this.data.header //This is gonna be added in config.js file
   },
 
+  getTranslations: function(){
+    return false;
+  },
+
   start: function(){
 
     Log.info("Starting module: " + this.name);
@@ -113,7 +117,39 @@ Module.register("trafficincidents", {
   },
 
   getTrafficData: function(){
-    var baseUrl = 
-  }
+    var baseUrl = "http://www.mapquestapi.com/traffic/v2/incidents?key=";
+    var apiUrl = baseUrl + this.config.CK + "&boundingBox=" + this.config.TL + "," + this.config.TR + "," + this.config.BL + "," + this.config.BR;
 
-})
+    var self = this;
+
+    var xhr = new XMLHttpRequest()
+
+    xhr.open("GET", apiUrl);
+
+    xhr.onreadystatechange = function(){
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+        self.parsedDataSetter(JSON.parse(this.response));
+    }
+  }
+  xhr.send()
+},
+
+parsedDataSetter: function(data){
+  this.fullDescription1 = data[:incidents][0][:fullDesc];
+  this.eventText1 = null;
+  this.severity1 = null;
+  this.fullDescription2 = null;
+  this.eventText2 = null;
+  this.severity2 = null;
+  this.fullDescription3 = null;
+  this.eventText3 = null;
+  this.severity3 = null;
+  this.fullDescription4 = null;
+  this.eventText4 = null;
+  this.severity4 = null;
+
+  this.updateDom(0)
+},
+
+});
