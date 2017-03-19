@@ -38,8 +38,7 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload){
     if (notification === "CONNECT"){
-      console.log("******************************************************")
-      console.log("The socket has received notification")
+      console.log("*********************Watson listening*********************************")
       this.startWatsonConversation();
       return;
     }
@@ -56,6 +55,7 @@ module.exports = NodeHelper.create({
       });
 
       micInputStream.on('error', function(err) {
+        console.log("%%%%%%%%%%%% error in input stream %%%%%%%%%%")
         console.log("Error in Input Stream: " + err);
       });
 
@@ -91,7 +91,7 @@ module.exports = NodeHelper.create({
           console.log("msg sent to conversation:" ,res);
 
           self.sendSocketNotification("KEYWORD_SPOTTED", res);
-          
+
           conversation.message({
             workspace_id: config.ConWorkspace,
             input: {'text': res},
