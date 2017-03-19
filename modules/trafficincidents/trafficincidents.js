@@ -116,7 +116,7 @@ Module.register("trafficincidents", {
   getTrafficData: function(){
     var baseUrl = "http://www.mapquestapi.com/traffic/v2/incidents?key=";
     var apiUrl = baseUrl + this.config.CK + "&boundingBox=" + this.config.TL + "," + this.config.TR + "," + this.config.BL + "," + this.config.BR;
-    debugger;
+
     var self = this;
 
     var xhr = new XMLHttpRequest()
@@ -125,7 +125,7 @@ Module.register("trafficincidents", {
 
     xhr.onreadystatechange = function(){
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        debugger;
+  
         self.parsedDataSetter(JSON.parse(this.response));
     }
   }
