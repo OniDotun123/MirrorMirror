@@ -90,7 +90,8 @@ module.exports = NodeHelper.create({
           var res = str.toLowerCase().replace(attentionWord.toLowerCase(), "");
           console.log("msg sent to conversation:" ,res);
 
-          self.sendSocketNotification("KEYWORD_SPOTTED", res);
+          var resToSocket = res.trim();
+          self.sendSocketNotification("KEYWORD_SPOTTED", resToSocket);
 
           conversation.message({
             workspace_id: config.ConWorkspace,
