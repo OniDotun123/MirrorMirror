@@ -43,7 +43,10 @@ var config = {
     },
     {
       module: 'conversation'
-		}
+		},
+    {
+      module: 'recognizer'
+    }
   ]
 
 };

@@ -1,7 +1,7 @@
 var NodeHelper = require("node_helper");
 
 module.exports = NodeHelper.create({
-  start() {};
+
   socketNotificationReceived: function(notification) {
     if (notification === "RECOGNIZER_CONNECTED"){
       console.log("Recognizer Node Helper initialized, awaiting Activation");
