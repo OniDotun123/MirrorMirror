@@ -86,9 +86,9 @@ module.exports = NodeHelper.create({
             context = response.context ; //update conversation context
 
             if (Array.isArray(response.output.text)) {
-              console.log("here *************************************************************************")
+
               conversation_response = response.output.text.join(' ').trim();                 //         # this is where the error is occuring
-              console.log(conversation_response)
+              
             } else {
               conversation_response = undefined;
             }
