@@ -1,6 +1,6 @@
 const watson = require('watson-developer-cloud'); //to connect to Watson developer cloud
 const config = require("./config.js") // to get our credentials and the attention word from the config.js files
-// const exec = require('child_process').exec;
+const exec = require('child_process').exec;
 const fs = require('fs');
 var conversation_response = "";
 const attentionWord = config.attentionWord; //you can change the attention word in the config file
