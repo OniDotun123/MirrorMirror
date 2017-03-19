@@ -89,7 +89,9 @@ module.exports = NodeHelper.create({
         if (str.toLowerCase().indexOf(attentionWord.toLowerCase()) >= 0) {
           var res = str.toLowerCase().replace(attentionWord.toLowerCase(), "");
           console.log("msg sent to conversation:" ,res);
+
           self.sendSocketNotification("KEYWORD_SPOTTED", res);
+          
           conversation.message({
             workspace_id: config.ConWorkspace,
             input: {'text': res},

@@ -7,7 +7,7 @@ Module.register("conversation",{
   socketNotificationReceived: function(notification, payload){
         if (notification === "KEYWORD_SPOTTED"){
             //Broadcast the message
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            console.log("@@@@@@@@@@@@@@@@@conversation received notification@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
             console.log(payload)
             this.sendNotification(payload.message, {type: "notification"});
         }
@@ -18,7 +18,6 @@ Module.register("conversation",{
         var header = document.createElement("header");
         header.innerHTML = "";
         wrapper.appendChild(header);
-
 
         return wrapper;
     }
