@@ -40,12 +40,12 @@ Module.register("trafficincidents", {
       var fullDescription1Display = document.createElement("span");
       fullDescription1Display.className = "desc-display-1";
       fullDescription1Display.innerHTML = this.fullDescription1;
-      div1.appendChild(fullDescription1);
+      div1.appendChild(fullDescription1Display);
 
       var eventText1Display = document.createElement("span");
       eventText1Display.className = "event-display-1";
       eventText1Display.innerHTML = this.eventText1;
-      div1.appendChild(eventText1);
+      div1.appendChild(eventText1Display);
 
       var severity1Display = document.createElement("span");
       severity1Display.className = "severity-display-1";
@@ -64,7 +64,7 @@ Module.register("trafficincidents", {
     //   var eventText2Display = document.createElement("span");
     //   eventText2Display.className = "event-display-2";
     //   eventText2Display.innerHTML = this.eventText2;
-    //   div2.appendChild(eventText2);
+    //   div2.appendChild(eventText2Display);
     //
     //   var severity2Display = document.createElement("span");
     //   severity2Display.className = "severity-display-2";
@@ -82,7 +82,7 @@ Module.register("trafficincidents", {
     //   var eventText3Display = document.createElement("span");
     //   eventText3Display.className = "event-display-3";
     //   eventText3Display.innerHTML = this.eventText3;
-    //   div3.appendChild(eventText3);
+    //   div3.appendChild(eventText3Display);
     //
     //   var severity3Display = document.createElement("span");
     //   severity3Display.className = "severity-display-3";
@@ -100,7 +100,7 @@ Module.register("trafficincidents", {
     //   var eventText4Display = document.createElement("span");
     //   eventText4Display.className = "event-display-4";
     //   eventText4Display.innerHTML = this.eventText4;
-    //   div4.appendChild(eventText4);
+    //   div4.appendChild(eventText4Display);
     //
     //   var severity4Display = document.createElement("span");
     //   severity4Display.className = "severity-display-4";
@@ -116,7 +116,7 @@ Module.register("trafficincidents", {
   getTrafficData: function(){
     var baseUrl = "http://www.mapquestapi.com/traffic/v2/incidents?key=";
     var apiUrl = baseUrl + this.config.CK + "&boundingBox=" + this.config.TL + "," + this.config.TR + "," + this.config.BL + "," + this.config.BR;
-
+    debugger;
     var self = this;
 
     var xhr = new XMLHttpRequest()
@@ -125,7 +125,7 @@ Module.register("trafficincidents", {
 
     xhr.onreadystatechange = function(){
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
+        debugger;
         self.parsedDataSetter(JSON.parse(this.response));
     }
   }
@@ -133,7 +133,7 @@ Module.register("trafficincidents", {
 },
 
 parsedDataSetter: function(data){
-  this.fullDescription1 = data[:incidents][0][:fullDesc];
+  this.fullDescription1 = data["incidents"][0]["fullDesc"];
   this.eventText1 = null;
   this.severity1 = null;
   this.fullDescription2 = null;
