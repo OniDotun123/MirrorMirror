@@ -41,9 +41,17 @@ var config = {
           endpoint: "observations"
         }
     },
+   
+        module: 'news',
+        position: 'bottom_right',
+        header: "News"
+
+    },
     {
-      module: 'conversation'
+
+       module: 'conversation'
 		}
+
   ]
 
 };
