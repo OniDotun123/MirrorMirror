@@ -12,7 +12,9 @@ Module.register("recognizer",{
       console.log("Recognizer initialized, awaiting Activation");
       return;
     }
+  },
 
+  notificationReceived: function(notification) {
     if(notification === "picture") {
       console.log("=============================");
       console.log("recieved request for picture!")
