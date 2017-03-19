@@ -5,7 +5,7 @@ Module.register("news", {
     sourcesEndpoint: "https://newsapi.org/v1/sources",
     source: "source=cnn",
     sortBy: "sortBy=top",
-    apiKey: "apiKey=2c22fec0b0b74305a40943b3a6ff4d9c"
+    apiKey: "apiKey="
   },
 
   getHeader: function(){
@@ -28,7 +28,7 @@ Module.register("news", {
     this.urlToImage = null;
 
     this.headlines = []
-    this.updateNews()
+    this.sendSocketNotification("LISTEN_NEWS", this.defaults);
     this.loaded = false;
   },
 
@@ -48,32 +48,27 @@ Module.register("news", {
             ol.appendChild(li);
     }
     articleDisplay.appendChild(ol);
+    var sourceLi = document.createElement("li");
+        sourceLi.className = "attribution-link"
+        sourceLi.innerHTML = "powered by News API";
+        sourceLi.style.fontSize = "medium";
+        sourceLi.style.listStyleType = "none";
+
     div.appendChild(articleDisplay);
+    div.appendChild(sourceLi);
 
     return div;
   },
 
-  updateNews: function(){
-
-    var url = this.defaults.articlesEndpoint + this.defaults.source + "&" + this.defaults.sortBy + "&" + this.defaults.apiKey;
-
-    var self = this;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-          self.dataSetter(JSON.parse(this.response));
+  socketNotificationReceived: function(notification, payload){
+    Log.log("socket received from Node Helper");
+    if(notification === "NEWS_RESULT"){
+      var newsJSON = payload;
+        for(i = 0; i < 5; i++){
+          this.headlines.push(newsJSON["articles"][i]["title"]);
         }
+          this.updateDom();
     }
-    xhr.send();
-  },
-
-  dataSetter: function(data){
-    for(i = 0; i < 5; i++){
-      this.headlines.push(data["articles"][i]["title"]);
-    }
-    this.updateDom();
   }
 
 
