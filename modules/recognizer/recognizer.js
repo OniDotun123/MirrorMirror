@@ -14,19 +14,20 @@ Module.register("recognizer",{
     if (notification === "RECOGNIZER_CONNECTED") {
       console.log("Recognizer initialized, awaiting Activation");
     }
+
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie");
       this.display = true;
       this.updateDom();
 
     }
+
   },
 
   notificationReceived: function(notification) {
     if(notification === "picture") {
       console.log("========== pic request ===================");
       this.sendSocketNotification("TAKE_SELFIE");
-
     }
 	},
 
@@ -37,6 +38,7 @@ Module.register("recognizer",{
       return wrapper;
     }
   },
+
 
 
 
