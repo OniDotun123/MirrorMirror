@@ -18,7 +18,7 @@ Module.register("recognizer",{
     }
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie")
-      
+      getDom;
     }
   },
 
@@ -28,6 +28,12 @@ Module.register("recognizer",{
       this.sendSocketNotification("TAKE_SELFIE");
 
     }
-	}
+	},
+
+  getDom: function() {
+        var wrapper = document.createElement("div");
+        wrapper.innerHTML = '<img id="selfie" src="./output.jpg" />';
+        return wrapper;
+    }
 
 });

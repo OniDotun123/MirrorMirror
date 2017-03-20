@@ -18,9 +18,5 @@ module.exports = NodeHelper.create({
     }
 	},
 
-  getDom: function() {
-        var wrapper = document.createElement("div");
-        wrapper.innerHTML = '<img id="selfie" src="./output.jpg" />';
-        return wrapper;
-    }
+
 });
