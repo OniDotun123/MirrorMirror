@@ -16,23 +16,22 @@ module.exports = NodeHelper.create({
       console.log("===Selfie is being taken now====")
       var image = exec('fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg')
 
-      var img = fs.readFile('./public/webcam_pic.jpg')
-
 
       var options = {
         url: 'https://api-us.faceplusplus.com/facepp/v3/search',
         method: 'POST',
         api_key: '9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj',
         api_secret: 'ROglv8QFta3JmGAppEYTpoPY68DjERzX',
-        image_file: img,
+        image_file: fs.readFile('./public/webcam_pic.jpg'),
         outer_id: 'mirrormirror'
       }
 
       var response = request.post(options, function(err, res, body) {
-
-        console.log(body)
-        var json = JSON.parse(body)
-        console.log(json)
+        setTimeout( function() {
+          console.log(body)
+          var json = JSON.parse(body)
+          console.log(json)
+        })
       })
 
 
