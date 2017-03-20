@@ -1,7 +1,7 @@
 
 Module.register("maps",{
     defaults: {
-  apikey: 'AIzaSyBAZyGBZhoCCvjD7jcf4SeWrr_h9d3BKNg',
+  apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
   origin: 'nyc+NY',
   destination: 'PA+US',
   baseurl: 'https://www.google.com/maps/embed/v1/place?key=',
@@ -14,9 +14,7 @@ Module.register("maps",{
 
     moment.locale(config.language);
 
-    this.author = null;
     this.description = null;
-    // this.completeURL = this.config.baseurl + this.config.apikey + '&q=' + this.config.origin + '&zoom=15';
     this.completeURL = null;
     this.sendSocketNotification("LISTEN_MAPS", this.defaults);
     this.loaded = false;
@@ -34,11 +32,19 @@ Module.register("maps",{
     return map;
   },
 
-  socketNotificationReceived: function(notification, payload){
+  notificationReceived: function(notification){
+      if(notification === "map"){
+        console.log("======== map request ========");
+        this.sendSocketNotification("MAP", this.defaults);
+      }
+  },
+
+  socketNotificationReceived: function(notification, url){
+    console.log('socket received from Node Helper Maps');
     Log.log("socket received from Node Helper");
     if(notification === "MAPS_RESULT"){
 
-      this.completeURL = payload;
+      this.completeURL = url;
       this.updateDom();
     }
   }
