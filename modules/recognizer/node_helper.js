@@ -16,11 +16,5 @@ module.exports = NodeHelper.create({
       image = exec('fswebcam -r 1280 x 720 --no-banner output.jpg', null)
       this.sendSocketNotification("SELFIE_IS_GO")
     }
-	},
-
-  getDom: function() {
-        var wrapper = document.createElement("div");
-        wrapper.innerHTML = '<img id="selfie" src="./output.jpg" />';
-        return wrapper;
-    }
+  }
 });
