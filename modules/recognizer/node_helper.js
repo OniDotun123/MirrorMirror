@@ -2,6 +2,7 @@ var NodeHelper = require("node_helper");
 const exec = require('child_process').exec;
 const path = require('path');
 const request = require('request');
+const fs = require('fs');
 
 module.exports = NodeHelper.create({
 
@@ -13,8 +14,8 @@ module.exports = NodeHelper.create({
     }
 
     else if(notification === "TAKE_SELFIE") {
-      console.log("===Selfie is being taken now====")
-      var image = exec('fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg')
+      console.log("===Selfie is being taken now====");
+      var image = exec('fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg');
 
 
       var options = {
@@ -28,14 +29,14 @@ module.exports = NodeHelper.create({
 
       var response = request.post(options, function(err, res, body) {
         setTimeout( function() {
-          console.log(body)
-          var json = JSON.parse(body)
-          console.log(json)
+          console.log(body);
+          var json = JSON.parse(body);
+          console.log(json);
         })
       })
 
 
-      this.sendSocketNotification("SELFIE_IS_GO", image)
+      this.sendSocketNotification("SELFIE_IS_GO", image);
     }
   }
 
