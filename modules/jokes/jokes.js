@@ -1,8 +1,6 @@
 Module.register("jokes", {
 
   defaults:{
-
-
   },
 
   getHeader: function(){
@@ -16,14 +14,17 @@ Module.register("jokes", {
   start: function(){
 
     Log.info("Starting module " + this.name);
-
     moment.locale(config.language);
 
     this.joke = null;
     this.getJoke();
     this.loaded = false;
 
+    this.sendSocketNotification("DISPLAY_JOKE", this.defaults);
+    this.loaded = false;
+
   },
+
 
   getDom: function(){
     var div = document.createElement('div');
@@ -36,6 +37,26 @@ Module.register("jokes", {
 
     return div
   },
+
+  notificationRecieved: function(notification) {
+    if (notification === "joke"){
+      console.log("========== joke request ==========");
+      this.sendSocketNotification("JOKE", this.defaults);
+    }
+  },
+
+  sendSocketNotificationRecieved: function (notification, payload) {
+    Log.log("socket recieved from Node Helper");
+    if (notification === "JOKE_RESULT") {
+      var jokeJSON = payload;
+      for (var i = 0; i < 5; i++) {
+        this.jokes = jokeJSON[0]
+      }
+      this.updateDom;
+    }
+  }
+
+
 
   getJoke: function(){
     var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
