@@ -41,7 +41,7 @@ var config = {
           endpoint: "observations"
         }
     },
-   
+   {
         module: 'news',
         position: 'bottom_right',
         header: "News"
@@ -49,8 +49,12 @@ var config = {
     },
     {
 
-       module: 'conversation'
-		}
+      //  module: 'conversation'
+
+      module: 'jokes',
+      position: 'middle_center',
+      header: 'Jokes By Ron Swanson'
+		},
 
   ]
 

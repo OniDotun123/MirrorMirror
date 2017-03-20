@@ -54,7 +54,7 @@ Module.register("jokes", {
       }
       this.updateDom;
     }
-  }
+  },
 
 
 
