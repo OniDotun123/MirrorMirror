@@ -1,7 +1,7 @@
 Module.register("jokes", {
 
   defaults:{
-     baseUrl: "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
+     baseUrl: "http://ron-swanson-quotes.herokuapp.com/v2/quotes"
   },
 
   getHeader: function(){
@@ -18,9 +18,9 @@ Module.register("jokes", {
     moment.locale(config.language);
 
     this.joke = null;
-    this.loaded = false;
 
-    this.sendSocketNotification("DISPLAY_JOKE", this.defaults);
+
+    this.sendSocketNotification("DISPLAY_JOKE");
     this.loaded = false;
 
   },
@@ -45,15 +45,14 @@ Module.register("jokes", {
     }
   },
 
-  sendSocketNotificationReceived: function (notification, payload) {
+  socketNotificationReceived: function (notification, payload) {
     Log.log("socket recieved from Node Helper");
     if (notification === "JOKE_RESULT") {
-      var jokeJSON = payload;
-      // for (var i = 0; i < 5; i++) {
-      this.parsedDataSetter(jokeJSON)
-        this.jokes = jokeJSON[0]
-      // }
 
+      // for (var i = 0; i < 5; i++) {
+      this.parsedDataSetter(payload);
+
+      // }
     }
   },
 
@@ -80,8 +79,8 @@ Module.register("jokes", {
   // },
 
   parsedDataSetter: function(data){
-    this.joke = data[0]
+    this.joke = data
+    this.updateDom();
 
-    this.updateDom()
   },
 })

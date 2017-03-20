@@ -27,26 +27,26 @@ var config = {
 				]
 			}
 		},
-    {
-        module: 'currentweather',
-        position: 'top_right',
-        header: "New York City",
-        config: {
-          location: "NYC, NY",
-          latitude: "40.73",
-          longitude: "-73.94",
-          apiBaseURL: "twcservice.mybluemix.net/api/weather/v1/geocode/",
-          username: "5a6159b6-edb8-4741-9584-140d1f1506f2",
-          password: "rnag46J0ue",
-          endpoint: "observations"
-        }
-    },
-   {
-        module: 'news',
-        position: 'bottom_right',
-        header: "News"
-
-    },
+    // {
+    //     module: 'currentweather',
+    //     position: 'top_right',
+    //     header: "New York City",
+    //     config: {
+    //       location: "NYC, NY",
+    //       latitude: "40.73",
+    //       longitude: "-73.94",
+    //       apiBaseURL: "twcservice.mybluemix.net/api/weather/v1/geocode/",
+    //       username: "5a6159b6-edb8-4741-9584-140d1f1506f2",
+    //       password: "rnag46J0ue",
+    //       endpoint: "observations"
+    //     }
+    // },
+  //  {
+  //       module: 'news',
+  //       position: 'bottom_right',
+  //       header: "News"
+   //
+  //   },
     {
 
       //  module: 'conversation'
