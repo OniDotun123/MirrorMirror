@@ -26,8 +26,10 @@ module.exports = NodeHelper.create({
       }
 
       response = request.post('https://api-us.faceplusplus.com/facepp/v3/search', requestParams)
-
+      console.log(response)
+      debugger
       json = JSON.parse(response)
+
       console.log(json)
 
       this.sendSocketNotification("SELFIE_IS_GO", image)
