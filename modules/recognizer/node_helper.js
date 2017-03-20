@@ -17,4 +17,5 @@ module.exports = NodeHelper.create({
       this.sendSocketNotification("SELFIE_IS_GO")
     }
   }
+
 });
