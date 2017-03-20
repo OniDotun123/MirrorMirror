@@ -1,10 +1,8 @@
 Module.register("recognizer",{
 
-  getScripts: function() {
-    // return ["webcam.js"];
-  },
-
   start() {
+    this.display = false;
+    this.image = "";
     console.log("Recognizer started");
     this.sendSocketNotification("RECOGNIZER_STARTUP");
     return;
@@ -17,24 +15,30 @@ Module.register("recognizer",{
       console.log("Recognizer initialized, awaiting Activation");
     }
     else if (notification === "SELFIE_IS_GO") {
-      console.log("Begin Display Selfie")
-      this.getDom();
+      console.log("Begin Display Selfie");
+      this.display = true;
+      this.updateDom();
+
     }
   },
 
   notificationReceived: function(notification) {
     if(notification === "picture") {
-      console.log("==========pic request===================");
+      console.log("========== pic request ===================");
       this.sendSocketNotification("TAKE_SELFIE");
 
     }
 	},
 
   getDom: function() {
-        var wrapper = document.createElement("div");
-        wrapper.innerHTML = '<img id="selfie" src="./output.jpg" />';
-        return wrapper;
+    if (this.display) {
+      var wrapper = document.createElement("div");
+      wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
+      return wrapper;
     }
+  },
+
+
 
 });
 
