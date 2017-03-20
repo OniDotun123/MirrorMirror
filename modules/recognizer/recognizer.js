@@ -19,7 +19,6 @@ Module.register("recognizer",{
       console.log("Begin Display Selfie");
       this.display = true;
       this.updateDom();
-
     }
 
   },
