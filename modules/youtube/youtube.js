@@ -1,0 +1,15 @@
+Module.register("soundcloud", {
+
+  defaults: {
+    
+  }
+
+
+
+
+
+
+
+
+
+});
