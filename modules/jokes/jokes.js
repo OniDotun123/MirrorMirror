@@ -1,6 +1,7 @@
 Module.register("jokes", {
 
   defaults:{
+     baseUrl: "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
   },
 
   getHeader: function(){
@@ -17,7 +18,6 @@ Module.register("jokes", {
     moment.locale(config.language);
 
     this.joke = null;
-    this.getJoke();
     this.loaded = false;
 
     this.sendSocketNotification("DISPLAY_JOKE", this.defaults);
@@ -49,34 +49,35 @@ Module.register("jokes", {
     Log.log("socket recieved from Node Helper");
     if (notification === "JOKE_RESULT") {
       var jokeJSON = payload;
-      for (var i = 0; i < 5; i++) {
+      // for (var i = 0; i < 5; i++) {
+      this.parsedDataSetter(jokeJSON)
         this.jokes = jokeJSON[0]
-      }
-      this.updateDom;
+      // }
+
     }
   },
 
 
 
-  getJoke: function(){
-    var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
-
-    var self = this
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open("GET", baseUrl);
-
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
-        self.parsedDataSetter(JSON.parse(this.response));
-
-      }
-
-    }
-    xhr.send()
-  },
+  // getJoke: function(){
+  //   var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
+  //
+  //   var self = this
+  //
+  //   var xhr = new XMLHttpRequest();
+  //
+  //   xhr.open("GET", baseUrl);
+  //
+  //   xhr.onreadystatechange = function(){
+  //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+  //
+  //       self.parsedDataSetter(JSON.parse(this.response));
+  //
+  //     }
+  //
+  //   }
+  //   xhr.send()
+  // },
 
   parsedDataSetter: function(data){
     this.joke = data[0]

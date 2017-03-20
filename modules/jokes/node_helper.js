@@ -4,7 +4,7 @@ var request = require("request");
 module.exports = NodeHelper.create({
 
   start: function() {
-    console.log(this.name + 'helper started...')
+    console.log(this.name + ' helper started...')
   },
 
   socketNotificationRecieved: function(notification, payload) {
@@ -18,7 +18,7 @@ module.exports = NodeHelper.create({
   },
 
   fetchJoke: function (payload) {
-    var url = "http://ron-swanson-quotes.herokuapp.com/v2/quotes"
+    var url = payload.baseUrl
     var self = this
 
     request({url: url, method: "GET"}, function(error, response, body) {
