@@ -35,7 +35,7 @@ Module.register("recognizer",{
   getDom: function() {
     if (this.display) {
       var wrapper = document.createElement("div");
-      wrapper.innerHTML = '<img id="selfie" src="/output.jpg" />';
+      wrapper.innerHTML = '<img id="selfie" src="' + this.image + '" />';
       return wrapper;
     }
   },
