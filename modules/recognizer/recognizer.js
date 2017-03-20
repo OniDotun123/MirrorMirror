@@ -18,7 +18,7 @@ Module.register("recognizer",{
     }
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie")
-      getDom;
+      this.getDom();
     }
   },
 
