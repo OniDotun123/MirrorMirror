@@ -21,10 +21,12 @@ module.exports = NodeHelper.create({
       var options = {
         url: 'https://api-us.faceplusplus.com/facepp/v3/search',
         method: 'POST',
-        api_key: '9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj',
-        api_secret: 'ROglv8QFta3JmGAppEYTpoPY68DjERzX',
-        image_file: fs.readFile('./public/webcam_pic.jpg'),
-        outer_id: 'mirrormirror'
+        headers: {
+          api_key: '9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj',
+          api_secret: 'ROglv8QFta3JmGAppEYTpoPY68DjERzX',
+          image_file: fs.readFile('./public/webcam_pic.jpg'),
+          outer_id: 'mirrormirror'
+        }
       }
 
       var response = request(options, function(err, res, body) {
@@ -36,7 +38,7 @@ module.exports = NodeHelper.create({
       })
 
 
-      this.sendSocketNotification("SELFIE_IS_GO", image);
+      this.sendSocketNotification("SELFIE_IS_GO");
     }
   }
 
