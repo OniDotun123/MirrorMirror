@@ -13,9 +13,12 @@ Module.register("recognizer",{
   socketNotificationReceived: function(notification) {
     console.log("Recognizer recieved a notification: " + notification)
 
-    if (notification === "RECOGNIZER_CONNECTED"){
+    if (notification === "RECOGNIZER_CONNECTED") {
       console.log("Recognizer initialized, awaiting Activation");
-
+    }
+    else if (notification === "SELFIE_IS_GO") {
+      console.log("Begin Display Selfie")
+      
     }
   },
 
@@ -23,7 +26,7 @@ Module.register("recognizer",{
     if(notification === "picture") {
       console.log("==========pic request===================");
       this.sendSocketNotification("TAKE_SELFIE");
-      
+
     }
 	}
 
