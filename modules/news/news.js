@@ -60,6 +60,15 @@ Module.register("news", {
     return div;
   },
 
+  notificationReceived: function(notification){
+      if(notification === "news"){
+        console.log("======== news request ========");
+        this.sendSocketNotification("NEWS", this.defaults);
+
+      }
+
+  },
+
   socketNotificationReceived: function(notification, payload){
     Log.log("socket received from Node Helper");
     if(notification === "NEWS_RESULT"){
@@ -70,6 +79,5 @@ Module.register("news", {
           this.updateDom();
     }
   }
-
 
 });
