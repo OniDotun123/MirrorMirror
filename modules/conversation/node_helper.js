@@ -39,7 +39,7 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload){
     if (notification === "CONNECT"){
-      console.log("*********************Watson listening*********************************")
+      console.log("**********Watson listening*****************")
       this.startWatsonConversation();
       return;
     }
@@ -142,7 +142,7 @@ module.exports = NodeHelper.create({
     });
 
   textStream.on('error', function(err) {
-  console.log("%%%%%%%%%%%% error in input stream %%%%%%%%%%")
+  console.log("%%%%%% error in input stream %%%%%%")
   console.log(' === Watson Speech to Text : An Error has occurred =====') ; // handle errors
   console.log(err) ;
   console.log("Press <ctrl>+C to exit.") ;
