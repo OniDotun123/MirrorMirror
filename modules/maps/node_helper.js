@@ -10,22 +10,17 @@ module.exports = NodeHelper.create({
   socketNotificationReceived: function(notification, payload){
     if(notification === "LISTEN_MAPS"){
       console.log('listening for maps...');
-      this.fetchMaps(payload);
+      this.fetchMap(payload);
     }
   },
 
   fetchMaps: function(payload){
 
-    var url = payload.articlesEndpoint + payload.source + "&" + payload.sortBy + "&" + payload.apiKey;
-
+    var url = payload.baseurl + payload.apikey + '&q=' + payload.origin + '&zoom=15';
     var self = this;
 
-    request({url: url, method: 'GET'}, function(error, response, body){
-        if(!error && response.statusCode === 200){
-          var parsedResult = JSON.parse(body);
-          self.sendSocketNotification('NEWS_RESULT', parsedResult);
-        }
-    })
+    self.sendSocketNotification('MAPS_RESULT', url);
+
   }
 
 })

@@ -1,12 +1,11 @@
 
 Module.register("maps",{
-    // Default module config.
     defaults: {
   apikey: 'AIzaSyBAZyGBZhoCCvjD7jcf4SeWrr_h9d3BKNg',
-  origin: 'origin_here',
-  destination: 'destination_here',
+  origin: 'nyc+NY',
+  destination: 'PA+US',
   baseurl: 'https://www.google.com/maps/embed/v1/place?key=',
-  style: 'border:0;-webkit-filter: grayscale(100%);filter: grayscale(100%);',
+  style: 'border:0;-webkit-filter: grayscale(100%);filter: grayscale(100%);'
   },
 
   start: function(){
@@ -17,25 +16,33 @@ Module.register("maps",{
 
     this.author = null;
     this.description = null;
-    this.url = null;
-    this.urlToImage = null;
-
-    this.headlines = []
+    // this.completeURL = this.config.baseurl + this.config.apikey + '&q=' + this.config.origin + '&zoom=15';
+    this.completeURL = null;
     this.sendSocketNotification("LISTEN_MAPS", this.defaults);
     this.loaded = false;
   },
 
     getDom: function() {
     // var completeURL = this.config.baseurl + this.config.apikey + '&origin=' + this.config.origin + '&destination=' + this.config.destination;
-    var completeURL = this.config.baseurl + this.config.apikey + '&q=' + this.config.origin + '&zoom=13';
+    // var completeURL = this.config.baseurl + this.config.apikey + '&q=' + this.config.origin + '&zoom=15';
 
-    var iframe = document.createElement("IFRAME");
-    iframe.style = this.config.style;
-    iframe.width = this.config.width;
-    iframe.height = this.config.height;
-    iframe.src =  completeURL;
-    return iframe;
+    var map = document.createElement("IFRAME");
+    map.style = this.config.style;
+    map.width = this.config.width;
+    map.height = this.config.height;
+    map.src =  this.completeURL;
+    return map;
+  },
+
+  socketNotificationReceived: function(notification, payload){
+    Log.log("socket received from Node Helper");
+    if(notification === "MAPS_RESULT"){
+
+      this.completeURL = payload;
+      this.updateDom();
+    }
   }
+
 });
 
 
