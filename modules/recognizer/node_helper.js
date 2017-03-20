@@ -14,23 +14,27 @@ module.exports = NodeHelper.create({
 
     else if(notification === "TAKE_SELFIE") {
       console.log("===Selfie is being taken now====")
-      image = exec('fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg')
-      img = fs.readFile('./public/webcam_pic.jpg')
+      var image = exec('fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg')
+
+      var img = fs.readFile('./public/webcam_pic.jpg')
 
 
-      requestParams = {
+      var options = {
+        url: 'https://api-us.faceplusplus.com/facepp/v3/search',
+        method: 'POST',
         api_key: '9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj',
         api_secret: 'ROglv8QFta3JmGAppEYTpoPY68DjERzX',
         image_file: img,
         outer_id: 'mirrormirror'
       }
 
-      response = request.post('https://api-us.faceplusplus.com/facepp/v3/search', requestParams)
-      console.log(response)
-      debugger
-      json = JSON.parse(response)
+      var response = request.post(options, function(err, res, body) {
 
-      console.log(json)
+        console.log(body)
+        var json = JSON.parse(body)
+        console.log(json)
+      })
+
 
       this.sendSocketNotification("SELFIE_IS_GO", image)
     }
