@@ -5,7 +5,7 @@ Module.register("news", {
     sourcesEndpoint: "https://newsapi.org/v1/sources",
     source: "source=cnn",
     sortBy: "sortBy=top",
-    apiKey: ""
+    apiKey: "apiKey="
   },
 
   getHeader: function(){
