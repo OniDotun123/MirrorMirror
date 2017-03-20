@@ -125,12 +125,12 @@ Module.register("trafficincidents", {
 
   notificationRecieved: function(notification){
     if(notification === "traffic"){
-      this.sendSocketNotification("TRAFFIC", this.defaults)
+      this.sendSocketNotification("NEED_UPDATES", this.defaults)
     }
   },
 
   socketNotificationReceived: function(notification, payload){
-    Log.log("notification recieved from Node Helper");
+    Log.log("This is for testing");
     if(notification === "TRAFFIC_ALERTS"){
       this.parsedDataSetter(payload);
       this.updateDom(0);
