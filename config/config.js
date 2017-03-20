@@ -41,16 +41,21 @@ var config = {
           endpoint: "observations"
         }
     },
-   
+    {
         module: 'news',
         position: 'bottom_right',
         header: "News"
 
     },
     {
+      module: 'youtube',
+      position: 'bottom_left'
 
-       module: 'conversation'
-		}
+    },
+    //{
+
+      // module: 'conversation'
+		//}
 
   ]
 
