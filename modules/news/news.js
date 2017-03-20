@@ -27,7 +27,8 @@ Module.register("news", {
     this.url = null;
     this.urlToImage = null;
 
-    this.headlines = []
+    this.headlines = [];
+    this.attributionLink = null;
     this.sendSocketNotification("LISTEN_NEWS", this.defaults);
     this.loaded = false;
   },
@@ -50,7 +51,7 @@ Module.register("news", {
     articleDisplay.appendChild(ol);
     var sourceLi = document.createElement("li");
         sourceLi.className = "attribution-link"
-        sourceLi.innerHTML = "powered by News API";
+        sourceLi.innerHTML = attributionLink;
         sourceLi.style.fontSize = "medium";
         sourceLi.style.listStyleType = "none";
 
@@ -76,7 +77,8 @@ Module.register("news", {
         for(i = 0; i < 5; i++){
           this.headlines.push(newsJSON["articles"][i]["title"]);
         }
-          this.updateDom();
+        this.attributionLink = "powered by News API"
+        this.updateDom();
     }
   }
 
