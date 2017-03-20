@@ -37,10 +37,10 @@ Module.register("recognizer",{
     if (this.display) {
       var imgElem = document.createElement("img");
       imgElem.src = "./public/webcam_pic.jpg";
-      wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
-      document.getElementById("selfie-display").appendChild(imgElem);
+      wrapper.appendChild(imgElem);
       return wrapper;
     }
+    return wrapper;
   },
 
 
