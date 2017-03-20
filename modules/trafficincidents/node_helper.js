@@ -8,9 +8,12 @@ module.exports = NodeHelper.create({
   },
 
   socketNotificationReceived: function(notification, payload){
-    if (notification === "TRAFFIC"){
+    if (notification === "TRAFFIC_REQUEST"){
       console.log("listening for traffic alerts...");
-      this.getTrafficData(payload);
+      this.sendSocketNotification("Connected");
+    }else if(notification === "TRAFFIC"){
+      console.log("getting traffic updates")
+      this.getTrafficData(payload)
     }
   },
 

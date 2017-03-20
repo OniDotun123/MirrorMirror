@@ -36,7 +36,7 @@ Module.register("trafficincidents", {
     // this.eventText4 = null;
     // this.severity4 = null;
 
-    this.sendSocketNotification("TRAFFIC", this.defaults);
+    this.sendSocketNotification("TRAFFIC_REQUEST", this.defaults);
     this.loaded = false;
   },
 
@@ -123,10 +123,15 @@ Module.register("trafficincidents", {
     // return div4
   },
 
+  notificationRecieved: function(notification){
+    if(notification === "traffic"){
+      this.sendSocketNotification("TRAFFIC", this.defaults)
+    }
+  }
+
   socketNotificationReceived: function(notification, payload){
     Log.log("notification recieved from Node Helper");
     if(notification === "TRAFFIC_ALERTS"){
-      debugger;
       this.parsedDataSetter(payload);
       this.updateDom()
     }
