@@ -19,7 +19,7 @@ module.exports = NodeHelper.create({
   },
 
   fetchMap: function(payload){
-    var url = payload.baseurl + payload.apikey + '&q=' + payload.origin + '&zoom=15';
+    var url = payload.baseurl + payload.apikey + '&q=' + payload.origin + '&zoom=' + payload.zoom ;
     this.sendSocketNotification('MAPS_RESULT', url);
   }
 

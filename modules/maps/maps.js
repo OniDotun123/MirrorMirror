@@ -5,7 +5,8 @@ Module.register("maps",{
   origin: '',
   destination: 'PA+US',
   baseurl: 'https://www.google.com/maps/embed/v1/place?key=',
-  style: 'border:0;-webkit-filter: grayscale(100%);filter: grayscale(100%);'
+  style: 'border:0;-webkit-filter: grayscale(100%);filter: grayscale(100%);',
+  zoom: '15'
   },
 
   start: function(){
@@ -57,11 +58,17 @@ Module.register("maps",{
       console.log("======== map request ========");
       this.sendSocketNotification("MAP", this.defaults);
     }
+    else if (notification === "zoom in") {
+      this.defaults.zoom = (Number(this.defaults.zoom) + 3).toString();
+      console.log("======== zoom in request ========");
+      this.sendSocketNotification("MAP", this.defaults);
+    }
+    else if (notification === "zoom out") {
+      this.defaults.zoom = (Number(this.defaults.zoom) - 3).toString();
+      console.log("======== zoom out request ========");
+      this.sendSocketNotification("MAP", this.defaults);
+    }
 
-      // if(notification === "map"){
-      //   console.log("======== map request ========");
-      //   this.sendSocketNotification("MAP", this.defaults);
-      // }
   },
 
   socketNotificationReceived: function(notification, url){
