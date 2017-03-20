@@ -1,8 +1,8 @@
 Module.register("trafficincidents", {
 
-  defaults:{
+  defaults: {
     baseUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
-    CK: "",
+    CK: "0MfvxPkvBhP7qwk0n7uNKAxVZzlSBXkQ",
     TL: "40.71",
     TR: "-73.999",
     BL: "40.69",
@@ -127,13 +127,13 @@ Module.register("trafficincidents", {
     if(notification === "traffic"){
       this.sendSocketNotification("TRAFFIC", this.defaults)
     }
-  }
+  },
 
   socketNotificationReceived: function(notification, payload){
     Log.log("notification recieved from Node Helper");
     if(notification === "TRAFFIC_ALERTS"){
       this.parsedDataSetter(payload);
-      this.updateDom()
+      this.updateDom(0);
     }
   },
 
