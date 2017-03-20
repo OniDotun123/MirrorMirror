@@ -35,9 +35,7 @@ Module.register("recognizer",{
     wrapper.className = "selfie-display";
 
     if (this.display) {
-      var imgElem = document.createElement("img");
-      imgElem.src = "./public/webcam_pic.jpg";
-      wrapper.appendChild(imgElem);
+      wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
       return wrapper;
     }
     return wrapper;
