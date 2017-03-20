@@ -27,7 +27,7 @@ module.exports = NodeHelper.create({
         outer_id: 'mirrormirror'
       }
 
-      var response = request.post(options, function(err, res, body) {
+      var response = request(options, function(err, res, body) {
         setTimeout( function() {
           console.log(body);
           var json = JSON.parse(body);
