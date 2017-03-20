@@ -4,8 +4,8 @@ Module.register("trafficincidents", {
     baseUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
     CK: "0MfvxPkvBhP7qwk0n7uNKAxVZzlSBXkQ",
     TL: "40.71",
-    TR: "-73.999",
-    BL: "40.69",
+    TR: "-73.97",
+    BL: "40.67",
     BR: "-74.02"
   },
 
@@ -53,7 +53,10 @@ Module.register("trafficincidents", {
 
   notificationReceived: function(notification){
     if(notification === "traffic"){
-      this.sendSocketNotification("NEED_UPDATES", this.defaults)
+      this.sendSocketNotification("NEED_UPDATES", this.defaults);
+      this.show();
+    }else{
+      this.hide();
     }
   },
 
@@ -65,6 +68,7 @@ Module.register("trafficincidents", {
           this.incidents.push(parsedData["incidents"][i]["fullDesc"])
         }
       this.updateDom(0);
+      this.incidents = []
     }
   },
 
