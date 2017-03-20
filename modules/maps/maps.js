@@ -2,7 +2,7 @@
 Module.register("maps",{
     defaults: {
   apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
-  origin: 'nyc+NY',
+  origin: '',
   destination: 'PA+US',
   baseurl: 'https://www.google.com/maps/embed/v1/place?key=',
   style: 'border:0;-webkit-filter: grayscale(100%);filter: grayscale(100%);'
@@ -33,10 +33,35 @@ Module.register("maps",{
   },
 
   notificationReceived: function(notification){
-      if(notification === "map"){
-        console.log("======== map request ========");
-        this.sendSocketNotification("MAP", this.defaults);
+    if (notification.includes("map")){
+      var command = notification.split(" ");
+      var extra = 'show me a map of';
+      var origin = [];
+
+      for (i = 0; i < command.length; i++) {
+        if (!extra.includes(command[i])) {
+          origin.push(command[i]);
+        }
       }
+
+      var formatedOrigin = origin.splice(0, 1);
+
+      if (origin.length > 0) {
+        for (i = 0; i < origin.length; i++) {
+          formatedOrigin.push("+");
+          formatedOrigin.push(origin[i]);
+        }
+      }
+
+      this.defaults.origin = formatedOrigin.join("");
+      console.log("======== map request ========");
+      this.sendSocketNotification("MAP", this.defaults);
+    }
+
+      // if(notification === "map"){
+      //   console.log("======== map request ========");
+      //   this.sendSocketNotification("MAP", this.defaults);
+      // }
   },
 
   socketNotificationReceived: function(notification, url){

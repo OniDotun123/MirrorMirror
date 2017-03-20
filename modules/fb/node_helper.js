@@ -11,16 +11,18 @@ module.exports = NodeHelper.create({
     if(notification === "LISTEN_FB_TIMELINE"){
       console.log('listening for FB timeline...');
       this.sendSocketNotification("CONNECTED");
+      this.fetchFbTimeline(payload);
     }
       else if(notification === "FB"){
        console.log("getting fb timeline...")
-      this.fetchFbTimeline(payload);
+       this.fetchFbTimeline(payload);
     }
   },
 
   fetchFbTimeline: function(payload){
     var url = payload.baseurl + payload.page + payload.endPoint;
-    this.sendSocketNotification('FB_RESULT', url);
+    this.socketNotificationReceived('FB_RESULT', url);
+    console.log(url)
   }
 
 })

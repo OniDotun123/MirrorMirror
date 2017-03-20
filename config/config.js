@@ -48,28 +48,28 @@ var config = {
 
     },
 
-    {
-        module: 'maps',
-        // 'lower_third',
-        position: 'middle_center',
-        config: {
-          apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
-          origin: '',
-          destination: '',
-          width: "100%",
-          height: "500px"
-        }
-    },
-
     // {
-    //     module: 'fb',
-    //     position: 'right',
+    //     module: 'maps',
+    //     // 'lower_third',
+    //     position: 'middle_center',
     //     config: {
-    //     style: 'border:none;overflow:hidden',
-    //     width: "340",
-    //     height: "500"
+    //       apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
+    //       origin: '',
+    //       destination: '',
+    //       width: "100%",
+    //       height: "500px"
     //     }
     // },
+
+    {
+        module: 'fb',
+        position: 'right',
+        config: {
+          style: 'border:none;overflow:hidden',
+          width: "340",
+          height: "500"
+        }
+    },
 
 
   //   {
