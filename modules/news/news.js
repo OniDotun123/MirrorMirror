@@ -5,7 +5,7 @@ Module.register("news", {
     sourcesEndpoint: "https://newsapi.org/v1/sources",
     source: "source=cnn",
     sortBy: "sortBy=top",
-    apiKey: "apiKey=2c22fec0b0b74305a40943b3a6ff4d9c"
+    apiKey: ""
   },
 
   getHeader: function(){
@@ -21,7 +21,6 @@ Module.register("news", {
     Log.info("Starting module: " + this.name);
 
     moment.locale(config.language);
-
     this.author = null;
     this.description = null;
     this.url = null;
@@ -77,8 +76,9 @@ Module.register("news", {
         for(i = 0; i < 5; i++){
           this.headlines.push(newsJSON["articles"][i]["title"]);
         }
-        this.attributionLink = "powered by News API"
+        this.attributionLink = "powered by News API";
         this.updateDom();
+
     }
   }
 
