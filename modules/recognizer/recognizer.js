@@ -31,9 +31,14 @@ Module.register("recognizer",{
 	},
 
   getDom: function() {
+    var wrapper = document.createElement("div");
+    wrapper.className = "selfie-display";
+
     if (this.display) {
-      var wrapper = document.createElement("div");
+      var imgElem = document.createElement("img");
+      imgElem.src = "./public/webcam_pic.jpg";
       wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
+      document.getElementById("selfie-display").appendChild(imgElem);
       return wrapper;
     }
   },
