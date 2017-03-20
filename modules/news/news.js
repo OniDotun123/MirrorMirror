@@ -21,13 +21,13 @@ Module.register("news", {
     Log.info("Starting module: " + this.name);
 
     moment.locale(config.language);
-
     this.author = null;
     this.description = null;
     this.url = null;
     this.urlToImage = null;
 
-    this.headlines = []
+    this.headlines = [];
+    this.attributionLink = null;
     this.sendSocketNotification("LISTEN_NEWS", this.defaults);
     this.loaded = false;
   },
@@ -50,7 +50,7 @@ Module.register("news", {
     articleDisplay.appendChild(ol);
     var sourceLi = document.createElement("li");
         sourceLi.className = "attribution-link"
-        sourceLi.innerHTML = "powered by News API";
+        sourceLi.innerHTML = attributionLink;
         sourceLi.style.fontSize = "medium";
         sourceLi.style.listStyleType = "none";
 
@@ -60,6 +60,15 @@ Module.register("news", {
     return div;
   },
 
+  notificationReceived: function(notification){
+      if(notification === "news"){
+        console.log("======== news request ========");
+        this.sendSocketNotification("NEWS", this.defaults);
+
+      }
+
+  },
+
   socketNotificationReceived: function(notification, payload){
     Log.log("socket received from Node Helper");
     if(notification === "NEWS_RESULT"){
@@ -67,9 +76,10 @@ Module.register("news", {
         for(i = 0; i < 5; i++){
           this.headlines.push(newsJSON["articles"][i]["title"]);
         }
-          this.updateDom();
+        this.attributionLink = "powered by News API";
+        this.updateDom();
+
     }
   }
-
 
 });
