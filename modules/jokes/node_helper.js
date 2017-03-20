@@ -3,7 +3,7 @@ var request = require("request");
 
 module.exports = NodeHelper.create({
 
-  start; function() {
+  start: function() {
     console.log(this.name + 'helper started...')
   },
 
