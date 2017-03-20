@@ -38,14 +38,14 @@ Module.register("jokes", {
     return div
   },
 
-  notificationRecieved: function(notification) {
+  notificationReceived: function(notification) {
     if (notification === "joke"){
       console.log("========== joke request ==========");
       this.sendSocketNotification("JOKE", this.defaults);
     }
   },
 
-  sendSocketNotificationRecieved: function (notification, payload) {
+  sendSocketNotificationReceived: function (notification, payload) {
     Log.log("socket recieved from Node Helper");
     if (notification === "JOKE_RESULT") {
       var jokeJSON = payload;

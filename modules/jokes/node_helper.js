@@ -7,7 +7,7 @@ module.exports = NodeHelper.create({
     console.log(this.name + ' helper started...')
   },
 
-  socketNotificationRecieved: function(notification, payload) {
+  socketNotificationReceived: function(notification, payload) {
     if (notification === "DISPLAY_JOKE") {
       console.log("listening for jokes")
       this.sendSocketNotification("CONNECTED");
