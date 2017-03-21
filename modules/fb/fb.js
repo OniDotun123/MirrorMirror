@@ -20,7 +20,7 @@ Module.register("fb",{
 
     this.description = null;
     this.completeURL = '';
-    this.sendSocketNotification("FB", this.defaults);
+    this.sendSocketNotification("LISTEN_FB_TIMELINE", this.defaults);
     this.loaded = false;
   },
 
