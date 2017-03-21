@@ -2,7 +2,7 @@ var config = {
 
   port: 8080,
   ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],
-  language: 'en',
+  language: 'ru',
   untis: 'imperial',
 
   modules: [
@@ -42,20 +42,46 @@ var config = {
         }
     },
     {
+
         module: 'news',
         position: 'bottom_right',
         header: "News"
 
     },
+
+     {
+         module: 'maps',
+        	 
+         position: 'middle_center',
+         config: {
+           apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
+           origin: '',
+           destination: '',
+           width: "100%",
+           height: "500px"
+         }
+     },
+
     {
+
       module: 'youtube',
       position: 'bottom_left'
 
     },
     {
+        module: 'fb',
+        position: 'right',
+        config: {
+          style: 'border:none;overflow:hidden',
+          width: "340",
+          height: "500"
+        }
+    },
 
-      module: 'conversation'
-		}
+    {
+        module: 'conversation'
+    },
+
 
   ]
 
