@@ -10,6 +10,9 @@ module.exports = NodeHelper.create({
   socketNotificationReceived: function(notification, payload){
     if(notification === "LISTEN_NEWS"){
       console.log('listening for news...');
+      this.sendSocketNotification("CONNECTED");
+    }else if(notification === "NEWS"){
+      console.log("getting news...")
       this.fetchNews(payload);
     }
   },
@@ -23,7 +26,7 @@ module.exports = NodeHelper.create({
     request({url: url, method: 'GET'}, function(error, response, body){
         if(!error && response.statusCode === 200){
           var parsedResult = JSON.parse(body);
-          self.sendSocketNotification('NEWS_RESULT', parsedResult);
+          self.sendSocketNotification("NEWS_RESULT", parsedResult);
         }
     })
   }
