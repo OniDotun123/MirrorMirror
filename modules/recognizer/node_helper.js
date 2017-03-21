@@ -22,7 +22,6 @@ module.exports = NodeHelper.create({
   },
 
   callForMatches: function() {
-    // var img = fs.createReadStream(__dirname + '../../public/webcam_pic.jpg');
     console.log("Recognizer Node Helper is calling api")
 
     var options = {
