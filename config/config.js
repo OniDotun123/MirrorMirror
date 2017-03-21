@@ -41,7 +41,8 @@ var config = {
           endpoint: "observations"
         }
     },
-   {
+    {
+
         module: 'news',
         position: 'bottom_right',
         header: "News"
@@ -62,6 +63,12 @@ var config = {
      },
 
     {
+
+      module: 'youtube',
+      position: 'bottom_left'
+
+    },
+    {
         module: 'fb',
         position: 'right',
         config: {
@@ -73,7 +80,8 @@ var config = {
 
     {
         module: 'conversation'
-    }
+    },
+
 
   ]
 
