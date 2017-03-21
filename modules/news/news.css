@@ -1,6 +1,4 @@
-
-
-.ordered-list-headers {
-
-  list-style-type: "none";
+ol.ordered-list-headers {
+  list-style: square;
+  text-align: left;
 }

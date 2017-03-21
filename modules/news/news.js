@@ -5,7 +5,7 @@ Module.register("news", {
     sourcesEndpoint: "https://newsapi.org/v1/sources",
     source: "source=cnn",
     sortBy: "sortBy=top",
-    apiKey: "apiKey="
+    apiKey: "apiKey=2c22fec0b0b74305a40943b3a6ff4d9c"
   },
 
   getHeader: function(){
@@ -13,8 +13,9 @@ Module.register("news", {
   },
 
   getStyles: function(){
-    return [this.file('news.css')]
+    return ['news.css']
   },
+
   getTranslations: function(){
     return false;
   },
@@ -31,7 +32,7 @@ Module.register("news", {
 
     this.headlines = [];
     this.attributionLink = null;
-    this.sendSocketNotification("NEWS", this.defaults);
+    this.sendSocketNotification("LISTEN_NEWS", this.defaults);
     this.loaded = false;
   },
 
@@ -54,7 +55,7 @@ Module.register("news", {
     articleDisplay.appendChild(ol);
     var sourceLi = document.createElement("li");
         sourceLi.className = "attribution-link"
-        sourceLi.innerHTML = attributionLink;
+        sourceLi.innerHTML = this.attributionLink;
         sourceLi.style.fontSize = "medium";
         sourceLi.style.listStyleType = "none";
 
@@ -68,21 +69,18 @@ Module.register("news", {
       if(notification === "news"){
         console.log("======== news request ========");
         this.sendSocketNotification("NEWS", this.defaults);
-
       }
-
   },
 
   socketNotificationReceived: function(notification, payload){
     Log.log("socket received from Node Helper");
     if(notification === "NEWS_RESULT"){
       var newsJSON = payload;
-        for(i = 0; i < 5; i++){
+        for(i = 0; i < 6; i++){
           this.headlines.push(newsJSON["articles"][i]["title"]);
         }
         this.attributionLink = "powered by News API";
         this.updateDom();
-
     }
   }
 
