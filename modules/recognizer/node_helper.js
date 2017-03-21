@@ -18,11 +18,16 @@ module.exports = NodeHelper.create({
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
 
-      console.log("callForMatches returns:" + this.callForMatches())
+      resp = this.callForMatches(this.getJSON);
+      console.log(resp)
     }
   },
 
-  callForMatches: function() {
+  getJSON: function(data) {
+    return data;
+  },
+
+  callForMatches: function(callback) {
     console.log("Recognizer Node Helper is calling api")
 
     var options = {
@@ -34,11 +39,10 @@ module.exports = NodeHelper.create({
 
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
-    return response = request.post({url: url, formData: options}, function(err, httpRes, body) {
+    var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
       console.log(body);
-      var json = JSON.parse(body);
-      console.log(json);
-      return json
+
+      callback(body)
     })
 
   },
