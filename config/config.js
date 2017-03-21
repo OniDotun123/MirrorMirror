@@ -77,7 +77,11 @@ var config = {
           height: "500"
         }
     },
-
+    {
+	module: 'trafficincidents',
+	position: 'middle_center',
+	header: 'Traffic'
+    },
     {
         module: 'conversation'
     },
