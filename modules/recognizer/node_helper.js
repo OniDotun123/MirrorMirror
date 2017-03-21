@@ -24,6 +24,7 @@ module.exports = NodeHelper.create({
   },
 
   getJSON: function(data) {
+    console.log("getJSON data:" + data)
     return data;
   },
 
@@ -40,7 +41,7 @@ module.exports = NodeHelper.create({
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
-      console.log(body);
+      console.log("request body" + body);
 
       callback(body)
     })
