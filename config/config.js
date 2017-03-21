@@ -2,7 +2,7 @@ var config = {
 
   port: 8080,
   ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],
-  language: 'ru',
+  language: 'en',
   untis: 'imperial',
 
   modules: [
@@ -83,10 +83,13 @@ var config = {
 	header: 'Traffic'
     },
     {
+      module: 'jokes',
+      position: 'middle_center',
+      header: 'Jokes By Ron Swanson'
+		},
+    {
         module: 'conversation'
     },
-
-
   ]
 
 };
