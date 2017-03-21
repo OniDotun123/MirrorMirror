@@ -1,7 +1,8 @@
 Module.register("trafficincidents", {
 
   defaults: {
-    baseUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
+    baseTrafficUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
+    baseGeocodeUrl: "http://www.mapquestapi.com/geocoding/v1/address?key=",
     CK: "0MfvxPkvBhP7qwk0n7uNKAxVZzlSBXkQ",
     TL: "40.71",
     TR: "-73.97",
@@ -52,7 +53,15 @@ Module.register("trafficincidents", {
   },
 
   notificationReceived: function(notification){
-    if(notification === "traffic"){
+    var notArr = notification.split(" ");
+    var regexp = /\d{5}/;
+    var zipCode = regexp.exec(notArr)[0]
+
+    if((zipcode !== null) && (notArr.includes("traffic"))){
+      this.geoCoderApi(zipCode);
+      this.sendSocketNotification("NEED_UPDATES", this.defaults);
+      this.show();
+    }else if(notArr.includes("traffic")){
       this.sendSocketNotification("NEED_UPDATES", this.defaults);
       this.show();
     }else{
@@ -70,6 +79,27 @@ Module.register("trafficincidents", {
       this.updateDom(0);
       this.incidents = []
     }
+  },
+
+  function geoCodeApi(zipCode){
+    var compUrl = this.defaults.baseGeocodeUrl + this.defaults.CK + "&location=" + zipCode
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", compUrl)
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+        var response = this.responseText;
+        var parsedResponse = JSON.parse(response)
+        coordSetter(parsedResponse);
+      }
+    }
+  },
+
+  function coordSetter(data){
+    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lat"] + 0.02)
+    this.defaults.TR = (data["results"][0]["locations"][0]["latLng"]["lng"] + 0.02)
+    this.defaults.BL = (data["results"][0]["locations"][0]["latLng"]["lat"] - 0.02)
+    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lng"] - 0.02)
   },
 
 });
