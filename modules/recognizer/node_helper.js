@@ -32,7 +32,8 @@ module.exports = NodeHelper.create({
       };
 
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
-    var thing = this;
+
+
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
         var json = JSON.parse(body);
         console.log(json);
@@ -46,8 +47,10 @@ module.exports = NodeHelper.create({
         if (confidence >= 75 ) {
           recogValue = "Logged In!"
         }
-        thing.sendSocketNotification("ROCOGNITION_RETURNED", recogValue);
+        return recogValue;
     })
+console.log(recogValue)
+    thing.sendSocketNotification("ROCOGNITION_RETURNED", recogValue);
 
 
 
