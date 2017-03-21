@@ -38,6 +38,7 @@ Module.register("fb",{
       if(notification === "facebook"){
         console.log("======== facebook request ========");
         this.sendSocketNotification("FB", this.defaults);
+        this.show();  
       }else{
         this.hide();
       }
