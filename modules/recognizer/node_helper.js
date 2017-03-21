@@ -16,7 +16,7 @@ module.exports = NodeHelper.create({
 
     else if(notification === "TAKE_SELFIE") {
       console.log("===Selfie is being taken now====");
-      var image = exec("fswebcam --no-banner ./public/webcam_pic.jpg");
+      var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
       this.callForMatches();
       this.sendSocketNotification("SELFIE_IS_GO");
   },
@@ -37,6 +37,9 @@ module.exports = NodeHelper.create({
         var json = JSON.parse(body);
         console.log(json);
     })
+
+
+
   }
 
 });
