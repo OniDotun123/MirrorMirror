@@ -12,6 +12,9 @@ Module.register("news", {
     return this.data.header //--> need to set header to News Feed
   },
 
+  getStyles: function(){
+    return [this.file('news.css')]
+  },
   getTranslations: function(){
     return false;
   },
@@ -28,7 +31,7 @@ Module.register("news", {
 
     this.headlines = [];
     this.attributionLink = null;
-    this.sendSocketNotification("LISTEN_NEWS", this.defaults);
+    this.sendSocketNotification("NEWS", this.defaults);
     this.loaded = false;
   },
 
@@ -40,6 +43,7 @@ Module.register("news", {
     articleDisplay.className = "article-display";
 
     var ol = document.createElement("ol");
+        ol.className = "ordered-list-headers";
 
     for(i = 0; i < this.headlines.length; i++) {
         var li = document.createElement("li");
