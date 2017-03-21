@@ -38,7 +38,7 @@ module.exports = NodeHelper.create({
         var json = JSON.parse(body);
         console.log(json);
         return json;
-    }.bind(this));
+    });
     return response;
   },
 
