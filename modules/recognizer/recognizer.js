@@ -1,32 +1,37 @@
 Module.register("recognizer",{
 
   start() {
-    this.display = false;
-    this.image = "";
-    console.log("Recognizer started");
+    this.displayPicture = false;
+    this.displayRecognition = false;
+    this.recognitionValue = "";
+    console.log("Recognizer listening...");
     this.sendSocketNotification("RECOGNIZER_STARTUP");
     return;
   },
 
-  socketNotificationReceived: function(notification) {
+  socketNotificationReceived: function(notification, payload) {
     console.log("Recognizer recieved a notification: " + notification)
 
     if (notification === "RECOGNIZER_CONNECTED") {
       console.log("Recognizer initialized, awaiting Activation");
     }
 
-    else if (notification === "SELFIE_IS_GO") {
-      console.log("Begin Display Selfie");
-      this.display = true;
+    else if (notification === "ROCOGNITION_RETURNED") {
+      console.log("Begin Display Recognition Value");
+      this.recognitionValue = payload
+      this.displayPicture = false;
+      this.displayRecognition = true;
       this.updateDom();
     }
+
+    else if (notification === "") {}
 
   },
 
   notificationReceived: function(notification) {
     if(notification === "picture") {
       console.log("========== pic request ===================");
-      this.sendSocketNotification("TAKE_SELFIE");
+      this.sendSocketNotification("RECOGNIZE_PICTURE");
     }
 	},
 
@@ -34,8 +39,12 @@ Module.register("recognizer",{
     var wrapper = document.createElement("div");
     wrapper.className = "selfie-display";
 
-    if (this.display) {
+    if (this.displayPicture) {
       wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
+      return wrapper;
+    }
+    else if (this.displayRecognition) {
+      wrapper.innerHTML = "<h3>" + this.recognitionValue + "</h3>";
       return wrapper;
     }
     return wrapper;

@@ -14,11 +14,10 @@ module.exports = NodeHelper.create({
 
     }
 
-    else if(notification === "TAKE_SELFIE") {
+    else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
       this.callForMatches();
-      this.sendSocketNotification("SELFIE_IS_GO");
   },
 
   callForMatches: function() {
@@ -36,6 +35,17 @@ module.exports = NodeHelper.create({
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
         var json = JSON.parse(body);
         console.log(json);
+
+        var confidence = json.results[0].confidence
+        var memberToken = json.results[0].face_token
+
+        console.log("confidence: " + confidence)
+        console.log("memberToken: "+ memberToken)
+        var recogValue = "Unable to log in"
+        if (confidence >= 75 ) {
+          recogValue = "Logged In!"
+        }
+        this.sendSocketNotification("ROCOGNITION_RETURNED", recogValue)
     })
 
 
