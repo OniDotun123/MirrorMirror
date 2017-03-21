@@ -52,10 +52,10 @@ var config = {
       position: 'bottom_left'
 
     },
-    //{
+    {
 
-      // module: 'conversation'
-		//}
+      module: 'conversation'
+		}
 
   ]
 
