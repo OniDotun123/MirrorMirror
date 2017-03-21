@@ -17,8 +17,8 @@ module.exports = NodeHelper.create({
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
-      thingy = this.callForMatches();
-      console.log("callForMatches returns:" + thingy)
+
+      console.log("callForMatches returns:" + this.callForMatches())
     }
   },
 
@@ -34,11 +34,11 @@ module.exports = NodeHelper.create({
 
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
-    var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
-    }).on('response', function(response) {
-      console.log(response);
-      var json = JSON.parse(response);
-      console.log(joson);
+    return response = request.post({url: url, formData: options}, function(err, httpRes, body) {
+      console.log(body);
+      var json = JSON.parse(body);
+      console.log(json);
+      return json
     })
 
   },
