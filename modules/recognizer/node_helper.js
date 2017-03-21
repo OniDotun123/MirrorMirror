@@ -18,7 +18,7 @@ module.exports = NodeHelper.create({
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
       thingy = this.callForMatches();
-      console.log("callForMatches returns:" + thingy.results)
+      console.log("callForMatches returns:" + thingy)
     }
   },
 
@@ -35,11 +35,12 @@ module.exports = NodeHelper.create({
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
-        var json = JSON.parse(body);
-        console.log(json);
-        return json;
-    });
-    return response;
+    }).on('response', function(response) {
+      console.log(response);
+      var json = JSON.parse(response);
+      console.log(joson);
+    })
+
   },
 
   translateRecognition: function(recogResult) {
@@ -49,3 +50,7 @@ module.exports = NodeHelper.create({
   }
 
 });
+
+// var json = JSON.parse(body);
+// console.log(json);
+// return json;
