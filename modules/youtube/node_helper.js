@@ -4,7 +4,6 @@ module.exports = NodeHelper.create({
 
     start: function(){
       console.log(this.name + " helper started...");
-
     },
 
     socketNotificationReceived: function(notification){

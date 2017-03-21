@@ -35,15 +35,15 @@ Module.register("youtube", {
   },
 
   notificationReceived: function(notification){
-    if(notification === "music"){
+    if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
       this.show();
-    }else if(notification === "motivation"){
+    }else if(notification.split(" ").includes("motivation")){
       console.log("========== motivation request ==========");
       this.sendSocketNotification("PLAY_MOTIVATION");
       this.show();
-    }else if(notification === "entertain"){
+    }else if(notification.split(" ").includes("entertain")){
       console.log("========== entertainment request ==========");
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
