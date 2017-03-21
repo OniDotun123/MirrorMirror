@@ -48,18 +48,18 @@ var config = {
 
     },
 
-    // {
-    //     module: 'maps',
-    //     // 'lower_third',
-    //     position: 'middle_center',
-    //     config: {
-    //       apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
-    //       origin: '',
-    //       destination: '',
-    //       width: "100%",
-    //       height: "500px"
-    //     }
-    // },
+     {
+         module: 'maps',
+        	 
+         position: 'middle_center',
+         config: {
+           apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
+           origin: '',
+           destination: '',
+           width: "100%",
+           height: "500px"
+         }
+     },
 
     {
         module: 'fb',
@@ -71,11 +71,9 @@ var config = {
         }
     },
 
-
-  //   {
-
-  //      module: 'conversation'
-		// }
+    {
+        module: 'conversation'
+    }
 
   ]
 
