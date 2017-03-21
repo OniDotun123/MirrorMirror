@@ -31,8 +31,6 @@ Module.register("trafficincidents", {
     this.loaded = false;
   },
 
-
-
   getDom: function(){
 
 
@@ -55,10 +53,13 @@ Module.register("trafficincidents", {
   notificationReceived: function(notification){
     var notArr = notification.split(" ");
     var regexp = /\d{5}/;
-    var zipCode = regexp.exec(notArr)[0]
 
-    if((zipcode !== null) && (notArr.includes("traffic"))){
-      this.geoCoderApi(zipCode);
+    if(regexp.test(notArr)){
+      var zipCode = regexp.exec(notArr)[0]
+    };
+
+    if((zipCode !== null) && (notArr.includes("traffic"))){
+      this.geoCodeApi(zipCode);
       this.sendSocketNotification("NEED_UPDATES", this.defaults);
       this.show();
     }else if(notArr.includes("traffic")){
@@ -81,25 +82,31 @@ Module.register("trafficincidents", {
     }
   },
 
-  function geoCodeApi(zipCode){
+  geoCodeApi: function(zipCode){
     var compUrl = this.defaults.baseGeocodeUrl + this.defaults.CK + "&location=" + zipCode
     var xhr = new XMLHttpRequest();
+    var that = this
 
     xhr.open("GET", compUrl)
     xhr.onreadystatechange = function(){
       if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
         var response = this.responseText;
-        var parsedResponse = JSON.parse(response)
-        coordSetter(parsedResponse);
+        var parsedResponse = JSON.parse(response);
+        that.coordSetter(parsedResponse);
       }
     }
+    xhr.send();
   },
 
-  function coordSetter(data){
-    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lat"] + 0.02)
-    this.defaults.TR = (data["results"][0]["locations"][0]["latLng"]["lng"] + 0.02)
-    this.defaults.BL = (data["results"][0]["locations"][0]["latLng"]["lat"] - 0.02)
-    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lng"] - 0.02)
+  coordSetter: function(data){
+    debugger;
+    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lat"] + 0.02);
+    this.defaults.TR = (data["results"][0]["locations"][0]["latLng"]["lng"] + 0.02);
+    this.defaults.BL = (data["results"][0]["locations"][0]["latLng"]["lat"] - 0.02);
+    this.defaults.TL = (data["results"][0]["locations"][0]["latLng"]["lng"] - 0.02);
+
+    return this.defaults;
+
   },
 
 });

@@ -17,7 +17,7 @@ module.exports = NodeHelper.create({
   },
 
   getTrafficData: function(payload){
-    var apiUrl = payload.baseUrl + payload.CK + "&boundingBox=" + payload.TL + "," + payload.TR + "," + payload.BL + "," + payload.BR;
+    var apiUrl = payload.baseTrafficUrl + payload.CK + "&boundingBox=" + payload.TL + "," + payload.TR + "," + payload.BL + "," + payload.BR;
 
     var self = this;
 
