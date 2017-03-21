@@ -22,8 +22,6 @@ Module.register("maps",{
   },
 
     getDom: function() {
-    // var completeURL = this.config.baseurl + this.config.apikey + '&origin=' + this.config.origin + '&destination=' + this.config.destination;
-    // var completeURL = this.config.baseurl + this.config.apikey + '&q=' + this.config.origin + '&zoom=15';
 
     var map = document.createElement("IFRAME");
     map.style = this.config.style;
@@ -67,7 +65,9 @@ Module.register("maps",{
       this.defaults.zoom = (Number(this.defaults.zoom) - 3).toString();
       console.log("======== zoom out request ========");
       this.sendSocketNotification("MAP", this.defaults);
-    }
+    }else{
+        this.hide();
+      }
 
   },
 

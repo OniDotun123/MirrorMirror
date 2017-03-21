@@ -21,8 +21,7 @@ module.exports = NodeHelper.create({
 
   fetchFbTimeline: function(payload){
     var url = payload.baseurl + payload.page + payload.endPoint;
-    this.socketNotificationReceived('FB_RESULT', url);
-    console.log(url)
+    this.sendSocketNotification('FB_RESULT', url);
   }
 
 })
