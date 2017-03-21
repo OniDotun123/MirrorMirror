@@ -17,7 +17,7 @@ module.exports = NodeHelper.create({
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
-      this.sendSocketNotification("ROCOGNITION_RETURNED", this.translateRecognition(this.callForMatches()));
+      this.callForMatches();
     }
   },
 
@@ -37,10 +37,8 @@ module.exports = NodeHelper.create({
         var json = JSON.parse(body);
         console.log(json);
         return json;
-    });
-    console.log("var response =" + response);
-    console.log("var json = " + json);
-    return json;
+        this.sendSocketNotification("ROCOGNITION_RETURNED")
+    }.bind(this));
   },
 
   translateRecognition: function(recogResult) {
