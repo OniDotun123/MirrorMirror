@@ -15,7 +15,7 @@ Module.register("youtube", {
     this.border = null;
     this.frameBorder = null;
     this.vidIdRequested = null;
-    this.sendSocketNotification("LISTEN_YOUTUBE");
+    this.sendSocketNotification("LISTEN_MUSIC");
     this.loaded = false
   },
 
@@ -47,6 +47,10 @@ Module.register("youtube", {
       console.log("========== entertainment request ==========");
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
+    }else if(notification.split(" ").includes("entertainment")){
+      console.log("========== entertainment request ==========");
+      this.sendSocketNotification("PLAY_ENTERTAINMENT");
+      this.show();
     }else{
       this.hide();
     }
@@ -73,7 +77,7 @@ Module.register("youtube", {
 
     this.updateDom();
   },
-  
+
   videoGetter: function(identifier){
     if (identifier === "M"){
       var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg"];
