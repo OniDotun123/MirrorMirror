@@ -73,6 +73,7 @@ Module.register("youtube", {
 
     this.updateDom();
   },
+  
   videoGetter: function(identifier){
     if (identifier === "M"){
       var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg"];
