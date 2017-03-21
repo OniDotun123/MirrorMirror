@@ -18,6 +18,7 @@ module.exports = NodeHelper.create({
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
       this.callForMatches();
+    }
   },
 
   callForMatches: function() {
