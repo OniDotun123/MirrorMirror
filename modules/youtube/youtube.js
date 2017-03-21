@@ -38,15 +38,17 @@ Module.register("youtube", {
     if(notification === "music"){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
+      this.show();
     }else if(notification === "motivation"){
       console.log("========== motivation request ==========");
       this.sendSocketNotification("PLAY_MOTIVATION");
+      this.show();
     }else if(notification === "entertain"){
       console.log("========== entertainment request ==========");
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
-    }else if(notification === "stop"){
-      this.src = null
-      this.getDom();
+      this.show();
+    }else{
+      this.hide();
     }
 
   },
@@ -71,7 +73,6 @@ Module.register("youtube", {
 
     this.updateDom();
   },
-
   videoGetter: function(identifier){
     if (identifier === "M"){
       var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg"];
@@ -97,9 +98,5 @@ Module.register("youtube", {
           this.vidIdRequested = entertainmentVidID[roundedRandom];
           this.getData();
     }
-
-
   }
-
-
 });
