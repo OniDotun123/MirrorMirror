@@ -18,18 +18,9 @@ Module.register("recognizer",{
 
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie");
-
       this.displayPicture = true;
-      // this.displayRecognition = true;
-      setTimeout(function() { this.updateDom();}, 1000);
-      setTimeout(function() {
-        this.displayPicture = false;
-        this.updateDom();
-      }, 8000);
+      this.updateDom()
     }
-
-    else if (notification === "") {}
-
   },
 
   notificationReceived: function(notification) {
