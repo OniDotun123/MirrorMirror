@@ -24,6 +24,8 @@ module.exports = NodeHelper.create({
   callForMatches: function() {
     console.log("Recognizer Node Helper is calling api")
 
+    var recogValue = "not changed"
+
     var options = {
         api_key: "9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj",
         api_secret: "ROglv8QFta3JmGAppEYTpoPY68DjERzX",
@@ -43,12 +45,12 @@ module.exports = NodeHelper.create({
 
         console.log("confidence: " + confidence);
         console.log("memberToken: "+ memberToken);
-        var recogValue = "Unable to log in"
+        recogValue = "Unable to log in"
         if (confidence >= 75 ) {
           recogValue = "Logged In!"
         }
         return recogValue;
-    })
+    });
 console.log(recogValue)
     thing.sendSocketNotification("ROCOGNITION_RETURNED", recogValue);
 
