@@ -17,14 +17,12 @@ module.exports = NodeHelper.create({
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
-      this.callForMatches();
+      this.sendSocketNotification("ROCOGNITION_RETURNED", this.translateRecognition(this.callForMatches()));
     }
   },
 
   callForMatches: function() {
     console.log("Recognizer Node Helper is calling api")
-
-    var recogValue = "not changed"
 
     var options = {
         api_key: "9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj",
@@ -35,27 +33,20 @@ module.exports = NodeHelper.create({
 
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
-
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
         var json = JSON.parse(body);
         console.log(json);
-        console.log("--- json.results:" + json.results);
-        var confidence = json.results[0].confidence;
-        var memberToken = json.results[0].face_token;
-
-        console.log("confidence: " + confidence);
-        console.log("memberToken: "+ memberToken);
-        recogValue = "Unable to log in"
-        if (confidence >= 75 ) {
-          recogValue = "Logged In!"
-        }
-        return recogValue;
+        return json;
     });
-console.log(recogValue)
-    thing.sendSocketNotification("ROCOGNITION_RETURNED", recogValue);
+    console.log("var response =" + response);
+    console.log("var json = " + json);
+    return json;
+  },
 
-
-
+  translateRecognition: function(recogResult) {
+    console.log("translating:" + recogResult);
+    var confidence = recogResult.results[0].confidence;
+    var memberToken = recogResult.results[0].face_token;
   }
 
 });
