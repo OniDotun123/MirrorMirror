@@ -15,7 +15,7 @@ Module.register("youtube", {
     this.border = null;
     this.frameBorder = null;
     this.vidIdRequested = null;
-    this.sendSocketNotification("PLAY_ENTERTAINMENT");
+    this.sendSocketNotification("LISTEN_YOUTUBE");
     this.loaded = false
   },
 
