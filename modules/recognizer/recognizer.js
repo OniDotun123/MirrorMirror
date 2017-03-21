@@ -16,12 +16,16 @@ Module.register("recognizer",{
       console.log("Recognizer initialized, awaiting Activation");
     }
 
-    else if (notification === "ROCOGNITION_RETURNED") {
-      console.log("Begin Display Recognition Value");
-      this.recognitionValue = payload
-      this.displayPicture = false;
-      this.displayRecognition = true;
-      this.updateDom();
+    else if (notification === "SELFIE_IS_GO") {
+      console.log("Begin Display Selfie");
+
+      this.displayPicture = true;
+      // this.displayRecognition = true;
+      setTimeout(function() { this.updateDom();}, 1000);
+      setTimeout(function() {
+        this.displayPicture = false;
+        this.updateDom();
+      }, 8000);
     }
 
     else if (notification === "") {}
@@ -31,7 +35,7 @@ Module.register("recognizer",{
   notificationReceived: function(notification) {
     if(notification === "picture") {
       console.log("========== pic request ===================");
-      this.sendSocketNotification("RECOGNIZE_PICTURE");
+      this.sendSocketNotification("TAKE_SELFIE");
     }
 	},
 
@@ -43,10 +47,10 @@ Module.register("recognizer",{
       wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
       return wrapper;
     }
-    else if (this.displayRecognition) {
-      wrapper.innerHTML = "<h3>" + this.recognitionValue + "</h3>";
-      return wrapper;
-    }
+    // else if (this.displayRecognition) {
+    //   wrapper.innerHTML = "<h3>" + this.recognitionValue + "</h3>";
+    //   return wrapper;
+    // }
     return wrapper;
   },
 
