@@ -3,6 +3,7 @@ const exec = require('child_process').exec;
 const path = require('path');
 const request = require('request');
 const fs = require('fs');
+const FormData = require('form-data');
 
 module.exports = NodeHelper.create({
 
@@ -23,18 +24,17 @@ module.exports = NodeHelper.create({
   callForMatches: function() {
     // var img = fs.createReadStream(__dirname + '../../public/webcam_pic.jpg');
     console.log("Recognizer Node Helper is calling api")
+
     var options = {
-        url: "https://api-us.faceplusplus.com/facepp/v3/search",
-        method: "POST",
         api_key: "9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj",
         api_secret: "ROglv8QFta3JmGAppEYTpoPY68DjERzX",
         image_file: fs.createReadStream(__dirname + '/../../public/webcam_pic.jpg'),
         outer_id: "mirrormirror"
       };
 
-    // var url = "https://api-us.faceplusplus.com/facepp/v3/search";
+    var url = "https://api-us.faceplusplus.com/facepp/v3/search";
 
-    var response = request(options, function(err, httpRes, body) {
+    var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
         var json = JSON.parse(body);
         console.log(json);
     })
