@@ -42,6 +42,9 @@ Module.register("jokes", {
     if (notification === "joke"){
       console.log("========== joke request ==========");
       this.sendSocketNotification("JOKE", this.defaults);
+      this.show();
+    }else{
+      this.hide();
     }
   },
 
