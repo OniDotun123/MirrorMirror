@@ -69,6 +69,9 @@ Module.register("news", {
       if(notification === "news"){
         console.log("======== news request ========");
         this.sendSocketNotification("NEWS", this.defaults);
+        this.show();
+      }else{
+        this.hide();
       }
   },
 
