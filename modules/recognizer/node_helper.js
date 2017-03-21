@@ -32,21 +32,21 @@ module.exports = NodeHelper.create({
       };
 
     var url = "https://api-us.faceplusplus.com/facepp/v3/search";
-    var self = this
+    var thing = this;
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
         var json = JSON.parse(body);
         console.log(json);
-        console.log("--- json.results:" + json.results)
-        var confidence = json.results[0].confidence
-        var memberToken = json.results[0].face_token
+        console.log("--- json.results:" + json.results);
+        var confidence = json.results[0].confidence;
+        var memberToken = json.results[0].face_token;
 
-        console.log("confidence: " + confidence)
-        console.log("memberToken: "+ memberToken)
+        console.log("confidence: " + confidence);
+        console.log("memberToken: "+ memberToken);
         var recogValue = "Unable to log in"
         if (confidence >= 75 ) {
           recogValue = "Logged In!"
         }
-        self.sendSocketNotification("ROCOGNITION_RETURNED", recogValue)
+        thing.sendSocketNotification("ROCOGNITION_RETURNED", recogValue);
     })
 
 
