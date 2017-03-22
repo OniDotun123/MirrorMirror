@@ -1,7 +1,7 @@
 Module.register("jokes", {
 
   defaults:{
-     baseUrl: "http://ron-swanson-quotes.herokuapp.com/v2/quotes"
+     baseUrl: "http://tambal.azurewebsites.net/joke/random"
   },
 
   getHeader: function(){
@@ -18,8 +18,6 @@ Module.register("jokes", {
     moment.locale(config.language);
 
     this.joke = null;
-
-
     this.sendSocketNotification("DISPLAY_JOKE");
     this.loaded = false;
 
@@ -39,7 +37,8 @@ Module.register("jokes", {
   },
 
   notificationReceived: function(notification) {
-    if (notification === "joke"){
+    var notArr = notification.split(" ");
+    if (notArr.includes("joke")){
       console.log("========== joke request ==========");
       this.sendSocketNotification("JOKE", this.defaults);
       this.show();
@@ -51,39 +50,12 @@ Module.register("jokes", {
   socketNotificationReceived: function (notification, payload) {
     Log.log("socket recieved from Node Helper");
     if (notification === "JOKE_RESULT") {
-
-      // for (var i = 0; i < 5; i++) {
       this.parsedDataSetter(payload);
-
-      // }
     }
   },
-
-
-
-  // getJoke: function(){
-  //   var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
-  //
-  //   var self = this
-  //
-  //   var xhr = new XMLHttpRequest();
-  //
-  //   xhr.open("GET", baseUrl);
-  //
-  //   xhr.onreadystatechange = function(){
-  //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-  //
-  //       self.parsedDataSetter(JSON.parse(this.response));
-  //
-  //     }
-  //
-  //   }
-  //   xhr.send()
-  // },
 
   parsedDataSetter: function(data){
     this.joke = data
     this.updateDom();
-
   },
 })
