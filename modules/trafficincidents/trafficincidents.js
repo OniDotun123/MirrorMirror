@@ -64,6 +64,7 @@ Module.register("trafficincidents", {
     Log.log("This is for testing");
     if(notification === "TRAFFIC_ALERTS"){
       var parsedData = payload;
+	debugger;
         for(i=0; i<3; i++){
           this.incidents.push(parsedData["incidents"][i]["fullDesc"])
         }
