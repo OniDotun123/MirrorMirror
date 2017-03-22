@@ -14,44 +14,62 @@ var config = {
 			module: 'clock',
 			position: 'top_left'
 		},
-    {
-			module: 'calendar',
-			header: 'US Holidays',
-			position: 'top_left',
-			config: {
-				calendars: [
-					{
-						symbol: 'calendar-check-o ',
-						url: 'webcal://www.calendarlabs.com/templates/ical/US-Holidays.ics'
-					}
-				]
-			}
-		},
+  
     {
         module: 'currentweather',
-        position: 'top_right',
+        position: 'top_left',
         header: "New York City",
-        config: {
-          location: "NYC, NY",
-          latitude: "40.73",
-          longitude: "-73.94",
-          apiBaseURL: "twcservice.mybluemix.net/api/weather/v1/geocode/",
-          username: "5a6159b6-edb8-4741-9584-140d1f1506f2",
-          password: "rnag46J0ue",
-          endpoint: "observations"
-        }
+        
     },
-   
+    {
+
         module: 'news',
         position: 'bottom_right',
         header: "News"
 
     },
+
+     {
+         module: 'maps',
+        	 
+         position: 'middle_center',
+         config: {
+           apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
+           origin: '',
+           destination: '',
+           width: "100%",
+           height: "500px"
+         }
+     },
+
     {
 
-       module: 'conversation'
-		}
+      module: 'youtube',
+      position: 'bottom_left'
 
+    },
+    {
+        module: 'fb',
+        position: 'right',
+        config: {
+          style: 'border:none;overflow:hidden',
+          width: "540",
+          height: "1700"
+        }
+    },
+    {
+	module: 'trafficincidents',
+	position: 'middle_center',
+	header: 'Traffic'
+    },
+    {
+      module: 'jokes',
+      position: 'middle_center',
+      header: 'Jokes By Ron Swanson'
+		},
+    {
+        module: 'conversation'
+    },
   ]
 
 };

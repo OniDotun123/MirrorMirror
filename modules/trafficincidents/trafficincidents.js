@@ -70,8 +70,7 @@ Module.register("trafficincidents", {
       }else if(parsedData["incidents"].length < 5){
         for(i=0; i < parsedData["incidents"].length; i++){
           this.incidents.push(parsedData["incidents"][i]["shortDesc"])
-      }
-      }else{
+      }}else{
         for(i=0; i<5; i++){
           this.incidents.push(parsedData["incidents"][i]["shortDesc"])
         }

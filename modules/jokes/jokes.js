@@ -1,8 +1,7 @@
 Module.register("jokes", {
 
   defaults:{
-
-
+     baseUrl: "http://ron-swanson-quotes.herokuapp.com/v2/quotes"
   },
 
   getHeader: function(){
@@ -16,14 +15,16 @@ Module.register("jokes", {
   start: function(){
 
     Log.info("Starting module " + this.name);
-
     moment.locale(config.language);
 
     this.joke = null;
-    this.getJoke();
+
+
+    this.sendSocketNotification("DISPLAY_JOKE");
     this.loaded = false;
 
   },
+
 
   getDom: function(){
     var div = document.createElement('div');
@@ -37,29 +38,52 @@ Module.register("jokes", {
     return div
   },
 
-  getJoke: function(){
-    var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
-
-    var self = this
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.open("GET", baseUrl);
-
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
-        self.parsedDataSetter(JSON.parse(this.response));
-
-      }
-
+  notificationReceived: function(notification) {
+    if (notification === "joke"){
+      console.log("========== joke request ==========");
+      this.sendSocketNotification("JOKE", this.defaults);
+      this.show();
+    }else{
+      this.hide();
     }
-    xhr.send()
   },
 
-  parsedDataSetter: function(data){
-    this.joke = data[0]
+  socketNotificationReceived: function (notification, payload) {
+    Log.log("socket recieved from Node Helper");
+    if (notification === "JOKE_RESULT") {
 
-    this.updateDom()
+      // for (var i = 0; i < 5; i++) {
+      this.parsedDataSetter(payload);
+
+      // }
+    }
+  },
+
+
+
+  // getJoke: function(){
+  //   var baseUrl = "http://ron-swanson-quotes.herokuapp.com/v2/quotes";
+  //
+  //   var self = this
+  //
+  //   var xhr = new XMLHttpRequest();
+  //
+  //   xhr.open("GET", baseUrl);
+  //
+  //   xhr.onreadystatechange = function(){
+  //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+  //
+  //       self.parsedDataSetter(JSON.parse(this.response));
+  //
+  //     }
+  //
+  //   }
+  //   xhr.send()
+  // },
+
+  parsedDataSetter: function(data){
+    this.joke = data
+    this.updateDom();
+
   },
 })
