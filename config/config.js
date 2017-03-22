@@ -14,19 +14,7 @@ var config = {
 			module: 'clock',
 			position: 'top_left'
 		},
-    {
-			module: 'calendar',
-			header: 'US Holidays',
-			position: 'top_left',
-			config: {
-				calendars: [
-					{
-						symbol: 'calendar-check-o ',
-						url: 'webcal://www.calendarlabs.com/templates/ical/US-Holidays.ics'
-					}
-				]
-			}
-		},
+  
     {
         module: 'currentweather',
         position: 'top_right',
