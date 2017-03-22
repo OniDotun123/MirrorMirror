@@ -27,7 +27,9 @@ Module.register("recognizer",{
 
     else if (notification === "RECOGNIZED") {
       console.log("==== RECOGNITION RECEIVED =========")
-      console.log("this is the body: " + payload.body);
+      console.log("results: " + payload.body.results);
+      console.log("results first : " + payload.body.results[0]);
+      console.log("this is the confidence: " + payload.body.results[0].confidence);
     }
   },
 
