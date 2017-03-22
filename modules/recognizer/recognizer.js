@@ -21,11 +21,20 @@ Module.register("recognizer",{
       this.displayPicture = true;
       this.updateDom(0);
     }
+
+    else if (notification === "RECOGNIZED") {
+      console.log("==== RECOGNITION RECEIVED =========")
+    }
   },
 
   notificationReceived: function(notification) {
     if(notification === "picture") {
-      console.log("========== pic request ===================");
+      console.log("==== pic request ====");
+      this.sendSocketNotification("TAKE_SELFIE");
+    }
+
+    else if (notification === "recognize") {
+      console.log("Recognizer begin recognition")
       this.sendSocketNotification("TAKE_SELFIE");
     }
 	},
