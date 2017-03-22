@@ -35,10 +35,11 @@ Module.register("fb",{
   },
 
    notificationReceived: function(notification){
-      if(notification === "facebook"){
+     var notArr = notification.split(" ");
+      if(notArr.includes("facebook")){
         console.log("======== facebook request ========");
         this.sendSocketNotification("FB", this.defaults);
-        this.show();  
+        this.show();
       }else{
         this.hide();
       }
@@ -53,5 +54,3 @@ Module.register("fb",{
   }
 
 });
-
-
