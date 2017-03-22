@@ -15,6 +15,7 @@ Module.register("youtube", {
     this.border = null;
     this.frameBorder = null;
     this.vidIdRequested = null;
+    this.src = null;
     this.sendSocketNotification("LISTEN_MUSIC");
     this.loaded = false
   },
@@ -29,13 +30,18 @@ Module.register("youtube", {
           videoFrame.src = this.src
           videoFrame.border = this.frameBorder
           videoFrame.style.border = this.border
-
         return videoFrame;
+    }else{
+      var div = document.createElement("DIV");
+        return div;
     }
   },
 
   notificationReceived: function(notification){
-    if(notification.split(" ").includes("music")){
+    notification = "stop"
+    if (notification.split(" ").includes("stop")){
+      this.sendSocketNotification("STOP_MEDIA");
+    }else if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
       this.show();
@@ -51,12 +57,8 @@ Module.register("youtube", {
       console.log("========== entertainment request ==========");
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
-    }else{
-      this.hide();
     }
-
   },
-
   socketNotificationReceived: function(notification){
     if(notification === "MUSIC_PLAYBACK"){
       this.videoGetter("M");
@@ -64,23 +66,35 @@ Module.register("youtube", {
       this.videoGetter("O");
     }else if(notification === "ENTERTAINMENT_PLAYBACK"){
       this.videoGetter("E");
+    }else if(notification === "STOP_MEDIA"){
+      this.videoGetter("BLANK");
     }
   },
-
   getData: function(){
     this.width = "640";
     this.height = "360";
     this.vidIdRequested = this.vidIdRequested
-    this.src = "https://www.youtube.com/embed/"+ this.vidIdRequested + "?enablejsapi=1&" + this.defaults.autoPlay;
+    this.src = "https://www.youtube.com/embed/" + this.vidIdRequested + "?enablejsapi=1&" + this.defaults.autoPlay;
     this.frameBorder = "0";
     this.border = "solid 4px #37474F";
 
     this.updateDom();
   },
 
+  stopData: function(){
+    this.width = null;
+    this.height = null;
+    this.vidIdRequested = null
+    this.src = null
+    this.frameBorder = null;
+    this.border = null;
+
+    this.updateDom();
+
+  },
   videoGetter: function(identifier){
     if (identifier === "M"){
-      var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg"];
+      var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg", "4NJlUribp3c"];
 
       var length = musicVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
@@ -88,7 +102,7 @@ Module.register("youtube", {
           this.getData();
 
     }else if(identifier === "O"){
-      var motivationVidID = ["ZXsQAXx_ao0", "WxOFvpplvAM", "ZXsQAXx_ao0", "CPQ1budJRIQ", "RXl6QpWQ5xo", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "wzhzkKccBi8", "ZXsQAXx_ao0"];
+      var motivationVidID = ["ZXsQAXx_ao0", "WxOFvpplvAM", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "CPQ1budJRIQ", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0"];
 
       var length = motivationVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
@@ -102,6 +116,9 @@ Module.register("youtube", {
           roundedRandom = Math.floor(Math.random()*(length));
           this.vidIdRequested = entertainmentVidID[roundedRandom];
           this.getData();
+
+    }else if(identifier === "BLANK"){
+      this.stopData();
     }
   }
 });
