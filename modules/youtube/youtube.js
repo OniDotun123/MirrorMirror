@@ -15,13 +15,12 @@ Module.register("youtube", {
     this.border = null;
     this.frameBorder = null;
     this.vidIdRequested = null;
+    this.src = null;
     this.sendSocketNotification("LISTEN_MUSIC");
     this.loaded = false
   },
 
   getDom: function(){
-
-    if (this.src !== null){
       var videoFrame = document.createElement("IFRAME");
           videoFrame.id = "youtube-video-holder"
           videoFrame.width = this.width
@@ -31,10 +30,10 @@ Module.register("youtube", {
           videoFrame.style.border = this.border
 
         return videoFrame;
-    }
   },
 
   notificationReceived: function(notification){
+    notification = "facebook"
     if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
@@ -52,11 +51,10 @@ Module.register("youtube", {
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
     }else{
+      this.src = null;
       this.hide();
     }
-
   },
-
   socketNotificationReceived: function(notification){
     if(notification === "MUSIC_PLAYBACK"){
       this.videoGetter("M");
@@ -66,7 +64,6 @@ Module.register("youtube", {
       this.videoGetter("E");
     }
   },
-
   getData: function(){
     this.width = "640";
     this.height = "360";
@@ -77,10 +74,9 @@ Module.register("youtube", {
 
     this.updateDom();
   },
-
   videoGetter: function(identifier){
     if (identifier === "M"){
-      var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg"];
+      var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg", "4NJlUribp3c"];
 
       var length = musicVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
