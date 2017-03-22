@@ -1,0 +1,27 @@
+div.weather-display {
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+
+}
+span.location-display{
+  display: block;
+  color: lightgrey;
+}
+span.temp-display {
+  display: block;
+  color: white;
+}
+
+span.high-display {
+  display: block;
+  color: #ff6666;
+}
+
+span.low-display {
+  display: block;
+  color: #9999ff;
+}
+
+span.forecast-display {
+  display: block;
+  color: white;
+}
