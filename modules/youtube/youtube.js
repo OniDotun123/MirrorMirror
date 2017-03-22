@@ -38,8 +38,10 @@ Module.register("youtube", {
   },
 
   notificationReceived: function(notification){
-  
+
     if (notification.split(" ").includes("stop")){
+      this.sendSocketNotification("STOP_MEDIA");
+    }else if(notification.split(" ").includes("stopped")){
       this.sendSocketNotification("STOP_MEDIA");
     }else if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
@@ -59,7 +61,9 @@ Module.register("youtube", {
       this.show();
     }
   },
+
   socketNotificationReceived: function(notification){
+
     if(notification === "MUSIC_PLAYBACK"){
       this.videoGetter("M");
     }else if(notification === "MOTIVATION_PLAYBACK"){
@@ -70,7 +74,9 @@ Module.register("youtube", {
       this.videoGetter("BLANK");
     }
   },
+
   getData: function(){
+
     this.width = "640";
     this.height = "360";
     this.vidIdRequested = this.vidIdRequested
@@ -82,6 +88,7 @@ Module.register("youtube", {
   },
 
   stopData: function(){
+
     this.width = null;
     this.height = null;
     this.vidIdRequested = null
@@ -90,9 +97,10 @@ Module.register("youtube", {
     this.border = null;
 
     this.updateDom();
-
   },
+  
   videoGetter: function(identifier){
+
     if (identifier === "M"){
       var musicVidID = ["0KSOMA3QBU0", "31crA53Dgu0", "34Na4j8AVgA", "0zGcUoRlhmw", "kOkQ4T5WO9E", "avjDmeudqbo", "sTUNQC6ep18", "JzSUgOmP66Q", "niJwjCQ-pAI", "gHeSsEaTJAg", "4NJlUribp3c"];
 
