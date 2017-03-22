@@ -8,6 +8,10 @@ Module.register("currentweather", {
     return this.data.header //This needs to display the location we set in out defaults.
   },
 
+  getStyles: function(){
+    return ["currentweatherstyles.css"]
+  },
+
   getTranslations: function(){
     return false;
   },
@@ -36,6 +40,11 @@ Module.register("currentweather", {
     locationDisplay.innerHTML = this.defaults.location; // might need to look into getting and setting location.
     div.appendChild(locationDisplay);
 
+    var forecastDisplay = document.createElement("span");
+    forecastDisplay.className = "forecast-display";
+    forecastDisplay.innerHTML = " It is " + this.forecast.toLowerCase() + " today."
+    div.appendChild(forecastDisplay);
+
     var temperatureDisplay = document.createElement("span")
     temperatureDisplay.className = "temp-display"
     temperatureDisplay.innerHTML = " Temperature: " + this.temperature + "&deg;"
@@ -51,15 +60,9 @@ Module.register("currentweather", {
     tempLowDisplay.innerHTML = " Low: " + this.low + "&deg";
     div.appendChild(tempLowDisplay);
 
-
-    var forecastDisplay = document.createElement("span");
-    forecastDisplay.className = "forecast-display";
-    forecastDisplay.innerHTML = " It is " + this.forecast + " today"
-    div.appendChild(forecastDisplay);
-
     return div
   },
-  
+
 
   socketNotificationReceived: function(notification, payload){
     Log.log("socket received from Node Helper");
