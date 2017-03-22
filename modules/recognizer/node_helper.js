@@ -19,6 +19,7 @@ module.exports = NodeHelper.create({
       this.sendSocketNotification("SELFIE_IS_GO");
     }
 
+
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
@@ -44,6 +45,7 @@ module.exports = NodeHelper.create({
       callback("RECOGNIZED", body);
     })
   },
+
   //
   // translateRecognition: function(recogResult) {
   //   console.log("translating:" + recogResult);
