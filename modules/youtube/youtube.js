@@ -77,8 +77,8 @@ Module.register("youtube", {
 
   getData: function(){
 
-    this.width = "640";
-    this.height = "360";
+    this.width = "853";
+    this.height = "480";
     this.vidIdRequested = this.vidIdRequested
     this.src = "https://www.youtube.com/embed/" + this.vidIdRequested + "?enablejsapi=1&" + this.defaults.autoPlay;
     this.frameBorder = "0";
@@ -98,7 +98,7 @@ Module.register("youtube", {
 
     this.updateDom();
   },
-  
+
   videoGetter: function(identifier){
 
     if (identifier === "M"){
