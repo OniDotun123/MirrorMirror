@@ -40,6 +40,7 @@ Module.register("recognizer",{
         }
       }
 
+      var self = this;
       setTimeout(function() { self.updateDom(1000); }, 2000);
 
     }
