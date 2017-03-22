@@ -22,13 +22,16 @@ module.exports = NodeHelper.create({
     }
 
     else if(notification === "RECOGNIZE_PICTURE") {
-      console.log("===Selfie is being taken now====");
+      console.log("===Recognition picture is being taken now====");
+      var imageSrc = "./public/webcam_pic"+payload+".jpg"
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic"+payload+".jpg");
       console.log("===Calling for matches ====")
       var self = this;
-      this.callForMatches(payload, function(body) {
-        self.sendSocketNotification("RECOGNIZED", {imgSrc: payload, body: body});
-      });
+      setTimeout(function() {
+        self.callForMatches(payload, function(body) {
+          self.sendSocketNotification("RECOGNIZED", {imgSrc: payload, body: body});
+        });
+      }, 2000)
     }
 
   },
