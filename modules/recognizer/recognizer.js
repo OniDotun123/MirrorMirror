@@ -37,6 +37,11 @@ Module.register("recognizer",{
       this.pictureCount++ ;
       this.sendSocketNotification("TAKE_SELFIE", this.pictureCount);
       this.show();
+    }else if(notification === "recognize") {
+      console.log("==== recognize request ====");
+      this.pictureCount++ ;
+      this.sendSocketNotification("RECOGNIZE_PICTURE", this.pictureCount);
+      this.show();
     }else{
       this.hide();
     }
