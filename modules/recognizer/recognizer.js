@@ -26,9 +26,21 @@ Module.register("recognizer",{
     }
 
     else if (notification === "RECOGNIZED") {
+      this.pictureCount++ ;
       console.log("==== RECOGNITION RECEIVED =========")
-      console.log("body: " + payload);
-      console.log("results from body: " + payload["results"]);
+
+      if (!payload || payload.charAt(0) === '<') {
+        this.picture = '<p> Server is Overloaded, Try again in a minute </p>'
+      } else {
+        console.log("body: " + payload);
+        json = JSON.parse(payload);
+        var user = json.results[0].face_token
+        if (json.results[0].confidence >= 75) {
+          this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
+        }
+      }
+
+      this.updateDom(1000);
 
     }
   },
@@ -41,7 +53,7 @@ Module.register("recognizer",{
       this.show();
     }else if(notification === "recognize") {
       console.log("==== recognize request ====");
-      this.pictureCount++ ;
+
       this.sendSocketNotification("RECOGNIZE_PICTURE", this.pictureCount);
       this.show();
     }else{
