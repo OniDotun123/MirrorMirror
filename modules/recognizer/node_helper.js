@@ -28,7 +28,9 @@ module.exports = NodeHelper.create({
       console.log("===Calling for matches ====")
       var self = this;
       setTimeout(function() {
+        console.log("Timeout called");
         self.callForMatches(payload, function(body) {
+          console.log("callForMatches called");
           self.sendSocketNotification("RECOGNIZED", {imgSrc: payload, body: body});
         });
       }, 2000)
