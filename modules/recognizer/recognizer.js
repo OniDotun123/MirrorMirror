@@ -53,7 +53,7 @@ Module.register("recognizer",{
       this.show();
     }else if(notification === "recognize") {
       console.log("==== recognize request ====");
-
+      this.picture = "Recognizing..."
       this.sendSocketNotification("RECOGNIZE_PICTURE", this.pictureCount);
       this.show();
     }else{
