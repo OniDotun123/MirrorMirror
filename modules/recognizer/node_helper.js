@@ -27,13 +27,16 @@ module.exports = NodeHelper.create({
       var image = exec("fswebcam -r 1280x720 --no-banner " + imageSrc);
       console.log("===Calling for matches ====")
       var self = this;
-      // setTimeout(function() {
-      //   console.log("Timeout called");
+
+//       setTimeout(function() {
+//         console.log("Timeout called");
         self.callForMatches(imageSrc, function(body) {
           console.log("callForMatches called");
           self.sendSocketNotification("RECOGNIZED", body);
         });
-      // }, 2000)
+
+//       }, 2000)
+
     }
 
   },
