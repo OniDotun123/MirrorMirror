@@ -32,8 +32,11 @@ Module.register("recognizer",{
       if (!payload || payload.charAt(0) === '<') {
         this.picture = '<p> Server is Overloaded, Try again in a minute </p>'
       } else {
-        console.log("body: " + payload);
         json = JSON.parse(payload);
+        console.log("just json: " + json);
+        console.log("json.results: " + json.results);
+        console.log("json.results[0]: " + json.results[0]);
+        console.log("json.results[0].confidence: " + json.results[0].confidence);
         var user = json.results[0].face_token
         if (json.results[0].confidence >= 75) {
           this.picture = '<h3> Successfully logged in, Welcome '+user+' </h3>'
