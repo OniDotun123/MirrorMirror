@@ -36,7 +36,7 @@ Module.register("recognizer",{
         json = JSON.parse(payload);
         var user = json.results[0].face_token
         if (json.results[0].confidence >= 75) {
-          this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
+          this.picture = '<h3> Successfully logged in, Welcome '+user+' </h3>'
         }
       }
 
