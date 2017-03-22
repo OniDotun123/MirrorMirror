@@ -15,7 +15,7 @@ Module.register("youtube", {
     this.border = null;
     this.frameBorder = null;
     this.vidIdRequested = null;
-    this.src = null;
+    this.src = "about:blank";
     this.sendSocketNotification("LISTEN_MUSIC");
     this.loaded = false
   },
@@ -28,11 +28,12 @@ Module.register("youtube", {
           videoFrame.src = this.src
           videoFrame.border = this.frameBorder
           videoFrame.style.border = this.border
-
+          debugger;
         return videoFrame;
   },
 
   notificationReceived: function(notification){
+    notification = "eggs"
     if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
@@ -50,7 +51,7 @@ Module.register("youtube", {
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
     }else{
-      this.src = null;
+      this.src = "about:blank";
       this.hide();
     }
   },
