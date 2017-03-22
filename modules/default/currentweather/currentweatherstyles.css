@@ -1,5 +1,6 @@
 div.weather-display {
-  font-family: Georgia
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+	
 }
 span.location-display{
   display: block;
