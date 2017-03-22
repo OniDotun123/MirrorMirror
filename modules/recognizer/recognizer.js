@@ -3,7 +3,7 @@ Module.register("recognizer",{
   start() {
     this.displayPicture = false;
     this.displayRecognition = false;
-    this.recognitionValue = "";
+    this.picture = '<img id="selfie" src="./public/webcam_pic.jpg" />';
     console.log("Recognizer listening...");
     this.sendSocketNotification("RECOGNIZER_STARTUP");
     return;
@@ -19,8 +19,8 @@ Module.register("recognizer",{
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie");
       this.displayPicture = true;
-
-      this.updateDom(0);
+      var self = this;
+      setTimeout(function() { self.updateDom(1000); }, 2000);
     }
 
     // else if (notification === "RECOGNIZED") {
@@ -34,11 +34,6 @@ Module.register("recognizer",{
       this.sendSocketNotification("TAKE_SELFIE");
 
     }
-
-    else {
-      this.displayPicture = true;
-      this.updateDom();
-    }
 	},
 
   getDom: function() {
@@ -46,7 +41,7 @@ Module.register("recognizer",{
     wrapper.className = "selfie-display";
 
     if (this.displayPicture) {
-      wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
+      wrapper.innerHTML = this.picture;
       return wrapper;
     }
 
