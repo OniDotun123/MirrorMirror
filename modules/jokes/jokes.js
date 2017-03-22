@@ -55,7 +55,7 @@ Module.register("jokes", {
   },
 
   parsedDataSetter: function(data){
-    this.joke = data
+    this.joke = data["joke"]
     this.updateDom();
   },
 })
