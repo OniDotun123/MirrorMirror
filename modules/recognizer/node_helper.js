@@ -24,7 +24,7 @@ module.exports = NodeHelper.create({
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Recognition picture is being taken now====");
       var imageSrc = "./public/webcam_pic"+payload+".jpg"
-      var image = exec("fswebcam -r 1280x720 --no-banner " + imageSrc);
+      var image = exec("fswebcam -r 600x338 --no-banner " + imageSrc);
       console.log("===Calling for matches ====")
       var self = this;
 
