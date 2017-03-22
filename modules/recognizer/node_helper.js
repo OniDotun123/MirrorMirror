@@ -46,13 +46,5 @@ module.exports = NodeHelper.create({
       console.log(body);
       callback("RECOGNIZED", body);
     })
-  },
-
-  //
-  // translateRecognition: function(recogResult) {
-  //   console.log("translating:" + recogResult);
-  //   var confidence = recogResult.results[0].confidence;
-  //   var memberToken = recogResult.results[0].face_token;
-  // }
-
+  }
 });
