@@ -8,7 +8,7 @@
 Module.register("clock",{
 	// Module config defaults.
 	defaults: {
-		displayType: "digital", // options: digital, analog, both
+		displayType: "analog", // options: digital, analog, both
 
 		timeFormat: config.timeFormat,
 		displaySeconds: true,
@@ -19,10 +19,10 @@ Module.register("clock",{
 
 		/* specific to the analog clock */
 		analogSize: "200px",
-		analogFace: "simple", // options: 'none', 'simple', 'face-###' (where ### is 001 to 012 inclusive)
+		analogFace: "face-004", // options: 'none', 'simple', 'face-###' (where ### is 001 to 012 inclusive)
 		analogPlacement: "bottom", // options: 'top', 'bottom', 'left', 'right'
 		analogShowDate: "top", // options: false, 'top', or 'bottom'
-		secondsColor: "#888888",
+		secondsColor: "pink",
 		timezone: null,
 	},
 	// Define required scripts.
