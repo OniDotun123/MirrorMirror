@@ -15,7 +15,7 @@ Module.register("trafficincidents", {
 
   getStyles: function(){
     return ['trafficincidents.css']
-  }
+  },
 
   start: function(){
 
