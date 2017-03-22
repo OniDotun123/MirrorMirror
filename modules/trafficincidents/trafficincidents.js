@@ -13,9 +13,9 @@ Module.register("trafficincidents", {
     return this.data.header //This is gonna be added in config.js file
   },
 
-  getTranslations: function(){
-    return false;
-  },
+  getStyles: function(){
+    return ['trafficincidents.css']
+  }
 
   start: function(){
 
