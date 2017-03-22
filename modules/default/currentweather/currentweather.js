@@ -24,7 +24,7 @@ Module.register("currentweather", {
     this.temperature = null; // temp
     this.high = null;
     this.low = null;
-    this.forecast = null;
+    this.forecast = "";
 
     this.sendSocketNotification("WEATHER");
     this.loaded = false;
