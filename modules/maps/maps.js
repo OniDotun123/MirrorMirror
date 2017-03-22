@@ -60,14 +60,14 @@ Module.register("maps",{
     else if (notification === "zoom in") {
       this.defaults.zoom = (Number(this.defaults.zoom) + 3).toString();
       console.log("======== zoom in request ========");
-      this.updateDom();
-        this.show();  
+      this.sendSocketNotification("MAP", this.defaults);
+      this.show();  
     }
     else if (notification === "zoom out") {
       this.defaults.zoom = (Number(this.defaults.zoom) - 3).toString();
       console.log("======== zoom out request ========");
-      this.updateDom();
-        this.show();  
+      this.sendSocketNotification("MAP", this.defaults);
+       this.show();  
     }else{
         this.hide();
       }
