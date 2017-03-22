@@ -43,10 +43,11 @@ var config = {
     },
 
     {
-      module: 'recognizer'
+      module: 'recognizer',
+      position: 'middle_center'    
     },
 
-
+    {
         module: 'news',
         position: 'bottom_right',
         header: "News"
