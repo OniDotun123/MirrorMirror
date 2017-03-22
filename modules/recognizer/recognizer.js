@@ -20,7 +20,7 @@ Module.register("recognizer",{
       console.log("Begin Display Selfie");
       this.displayPicture = true;
 
-      this.updateDom();
+      this.updateDom(0);
     }
 
     // else if (notification === "RECOGNIZED") {
@@ -35,15 +35,9 @@ Module.register("recognizer",{
 
     }
 
-    // else if (notification === "recognize") {
-    //   console.log("Recognizer begin recognition")
-    //   this.sendSocketNotification("RECOGNIZE_PICTURE");
-    // }
-
     else {
-      this.displayPicture = false
-      updateDom()
-
+      this.displayPicture = true;
+      this.updateDom();
     }
 	},
 
@@ -55,10 +49,7 @@ Module.register("recognizer",{
       wrapper.innerHTML = '<img id="selfie" src="./public/webcam_pic.jpg" />';
       return wrapper;
     }
-    // else if (this.displayRecognition) {
-    //   wrapper.innerHTML = "<h3>" + this.recognitionValue + "</h3>";
-    //   return wrapper;
-    // }
+
     return wrapper;
   },
 
