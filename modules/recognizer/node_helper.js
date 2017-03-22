@@ -24,7 +24,7 @@ module.exports = NodeHelper.create({
       console.log("===Selfie is being taken now====");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
       console.log("===Calling for matches ====")
-      this.callForMatches(this.sendSocketNotification);
+      this.callForMatches(this.sendRecognizedNotification);
     }
 
   },
@@ -44,7 +44,11 @@ module.exports = NodeHelper.create({
     var response = request.post({url: url, formData: options}, function(err, httpRes, body) {
       console.log("The response body is :");
       console.log(body);
-      callback("RECOGNIZED", body);
+      callback(body);
     })
+  },
+
+  sendRecognizedNotification: function (message) {
+    this.sendSocketNotification("RECOGNIZED", message)
   }
 });
