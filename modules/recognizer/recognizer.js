@@ -19,6 +19,7 @@ Module.register("recognizer",{
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie");
       this.displayPicture = true;
+      this.show();
       this.updateDom(0);
     }
 
@@ -31,11 +32,16 @@ Module.register("recognizer",{
     if(notification === "picture") {
       console.log("==== pic request ====");
       this.sendSocketNotification("TAKE_SELFIE");
+
     }
 
     else if (notification === "recognize") {
       console.log("Recognizer begin recognition")
       this.sendSocketNotification("RECOGNIZE_PICTURE");
+    }
+
+    else {
+      hide();
     }
 	},
 
