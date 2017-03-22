@@ -1,6 +1,5 @@
 var NodeHelper = require("node_helper");
 const exec = require('child_process').exec;
-const path = require('path');
 const request = require('request');
 const fs = require('fs');
 const FormData = require('form-data');
@@ -16,10 +15,9 @@ module.exports = NodeHelper.create({
     else if (notification === "TAKE_SELFIE") {
       console.log("Webcam is being taken now");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
-      
+
       this.sendSocketNotification("SELFIE_IS_GO");
     }
-
 
     // else if(notification === "RECOGNIZE_PICTURE") {
     //   console.log("===Selfie is being taken now====");
@@ -47,9 +45,5 @@ module.exports = NodeHelper.create({
       console.log(body);
       callback(body);
     })
-  },
-
-  sendRecognizedNotification: function (message) {
-    this.sendSocketNotification("RECOGNIZED", message)
   }
 });

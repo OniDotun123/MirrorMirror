@@ -2,11 +2,11 @@ const watson = require('watson-developer-cloud'); //to connect to Watson develop
 const config = require("./config.js") // to get our credentials and the attention word from the config.js files
 const exec = require('child_process').exec;
 const fs = require('fs');
-var conversation_response = "";
 const attentionWord = config.attentionWord; //you can change the attention word in the config file
 const mic = require('mic');
 const micInstance = mic({ 'rate': '44100', 'channels': '2', 'debug': false, 'exitOnSilence': 6 });
 const micInputStream = micInstance.getAudioStream();
+var conversation_response = "";
 
 var speech_to_text = watson.speech_to_text({
   username: config.STTUsername,
@@ -39,7 +39,7 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload){
     if (notification === "CONNECT"){
-      console.log("**********Watson listening*****************")
+      console.log("********** Watson listening *****************")
       this.startWatsonConversation();
       return;
     }
@@ -63,7 +63,6 @@ module.exports = NodeHelper.create({
         // detect silence.
       });
       micInstance.start();
-      console.log("TJBot is listening, you may speak now.");
 
       var textStream ;
 
@@ -73,7 +72,7 @@ module.exports = NodeHelper.create({
         keywords: [attentionWord],
         smart_formatting: true,
         keywords_threshold: 0.5,
-        model: 'en-US_BroadbandModel'  // Specify your language model here
+        model: 'en-US_BroadbandModel'
       };
 
 
@@ -85,7 +84,7 @@ module.exports = NodeHelper.create({
       var context = {} ; // Save information on conversation context/stage for continous conversation
       textStream.setEncoding('utf8');
       textStream.on('data', function(str){
-        console.log(' ===== Speech to Text ===== : ' + str) //############################################################
+        console.log(' ===== Speech to Text ===== : ' + str)
         if (str.toLowerCase().indexOf(attentionWord.toLowerCase()) >= 0) {
           var res = str.toLowerCase().replace(attentionWord.toLowerCase(), "");
           console.log("msg sent to conversation:" ,res);
@@ -105,7 +104,7 @@ module.exports = NodeHelper.create({
 
             if (Array.isArray(response.output.text)) {
 
-              conversation_response = response.output.text.join(' ').trim();                 //         # this is where the error is occuring
+              conversation_response = response.output.text.join(' ').trim();
 
             } else {
               conversation_response = undefined;
@@ -119,8 +118,6 @@ module.exports = NodeHelper.create({
               };
 
               console.log("Result from conversation:" ,conversation_response);
-
-              // self.sendSocketNotification("KEYWORD_SPOTTED", conversation_response);
 
               tempStream = text_to_speech.synthesize(params).pipe(fs.createWriteStream('output.wav')).on('close', function() {
                 var create_audio = exec('aplay output.wav', function (error, stdout, stderr) {
