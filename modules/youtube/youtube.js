@@ -33,7 +33,6 @@ Module.register("youtube", {
   },
 
   notificationReceived: function(notification){
-    notification = "facebook"
     if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
