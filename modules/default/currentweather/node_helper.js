@@ -3,23 +3,34 @@ var request = require('request');
 
 module.exports = NodeHelper.create({
 
-  updateWeather: function(){
-    debugger;
-    var url ="https://" + this.config.username + ":" + this.config.password +"@" + this.config.apiBaseUrl + this.config.latitude + "/" + this.config.longitude + "/" + this.config.endpoint + this.defaults.format + this.defaults.language;
-    debugger;
+  start: function(){
+    console.log(this.name + 'helper started...');
+  },
+
+  socketNotificationReceived: function(notification){
+    if(notification === "LISTEN_WEATHER"){
+      console.log('listening for weather...');
+    }else if(notification === "WEATHER"){
+      console.log('getting weather...');
+      this.fetchWeather();
+    }
+  },
+
+  fetchWeather: function(){
+
+    var baseUrl = "https://query.yahooapis.com/v1/public/yql?q=";
+    var yql_query = "select * from weather.forecast where woeid=2459115";
+    var yql_url = baseUrl + encodeURIComponent(yql_query) + "&format=json"
+
     var self = this;
 
-    var xhr = new XMLHttpRequest()
-    xhr.open("GET", url);
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
-        self.parsedDataSetter(JSON.parse(this.response));
-      } else {
-        Log.error(this.name + "Could not load")
+    request({url: yql_url, method: "GET"}, function(error, response, body){
+      if(!error && response.statusCode === 200){
+        var parsedResult = JSON.parse(body);
+        self.sendSocketNotification("NEWS_RESULT", parsedResult);
       }
-    }
-    xhr.send()
+
+    })
   }
 
 })
