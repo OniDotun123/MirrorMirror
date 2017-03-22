@@ -73,8 +73,8 @@ var config = {
         position: 'right',
         config: {
           style: 'border:none;overflow:hidden',
-          width: "440",
-          height: "1000"
+          width: "540",
+          height: "1300"
         }
     },
     {
