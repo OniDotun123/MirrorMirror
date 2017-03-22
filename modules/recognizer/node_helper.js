@@ -16,16 +16,17 @@ module.exports = NodeHelper.create({
     else if (notification === "TAKE_SELFIE") {
       console.log("Webcam is being taken now");
       var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
+      
       this.sendSocketNotification("SELFIE_IS_GO");
     }
 
 
-    else if(notification === "RECOGNIZE_PICTURE") {
-      console.log("===Selfie is being taken now====");
-      var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
-      console.log("===Calling for matches ====")
-      this.callForMatches(this.sendRecognizedNotification);
-    }
+    // else if(notification === "RECOGNIZE_PICTURE") {
+    //   console.log("===Selfie is being taken now====");
+    //   var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
+    //   console.log("===Calling for matches ====")
+    //   this.callForMatches(this.sendRecognizedNotification);
+    // }
 
   },
 
