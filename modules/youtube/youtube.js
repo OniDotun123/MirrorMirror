@@ -28,12 +28,11 @@ Module.register("youtube", {
           videoFrame.src = this.src
           videoFrame.border = this.frameBorder
           videoFrame.style.border = this.border
-          debugger;
         return videoFrame;
   },
 
   notificationReceived: function(notification){
-    notification = "eggs"
+    notification = "facebook"
     if(notification.split(" ").includes("music")){
       console.log("========== music request ==========");
       this.sendSocketNotification("PLAY_MUSIC");
@@ -51,7 +50,7 @@ Module.register("youtube", {
       this.sendSocketNotification("PLAY_ENTERTAINMENT");
       this.show();
     }else{
-      this.src = "about:blank";
+      this.videoGetter("BLANK");
       this.hide();
     }
   },
@@ -64,11 +63,11 @@ Module.register("youtube", {
       this.videoGetter("E");
     }
   },
-  getData: function(){
+  getData: function(source){
     this.width = "640";
     this.height = "360";
     this.vidIdRequested = this.vidIdRequested
-    this.src = "https://www.youtube.com/embed/"+ this.vidIdRequested + "?enablejsapi=1&" + this.defaults.autoPlay;
+    this.src = source + this.vidIdRequested + "?enablejsapi=1&" + this.defaults.autoPlay;
     this.frameBorder = "0";
     this.border = "solid 4px #37474F";
 
@@ -81,7 +80,7 @@ Module.register("youtube", {
       var length = musicVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
           this.vidIdRequested = musicVidID[roundedRandom]
-          this.getData();
+          this.getData("https://www.youtube.com/embed/");
 
     }else if(identifier === "O"){
       var motivationVidID = ["ZXsQAXx_ao0", "WxOFvpplvAM", "ZXsQAXx_ao0", "CPQ1budJRIQ", "RXl6QpWQ5xo", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "wzhzkKccBi8", "ZXsQAXx_ao0"];
@@ -89,7 +88,7 @@ Module.register("youtube", {
       var length = motivationVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
           this.vidIdRequested = motivationVidID[roundedRandom]
-          this.getData();
+          this.getData("https://www.youtube.com/embed/");
 
     }else if(identifier === "E"){
       var entertainmentVidID = ["1VuMdLm0ccU", "hpigjnKl7nI", "Dd7FixvoKBw", "WPkMUU9tUqk", "N0gb9v4LI4o", "gneBUA39mnI", "Zce-QT7MGSE", "1VuMdLm0ccU",  "Dd7FixvoKBw", "WPkMUU9tUqk", "N0gb9v4LI4o", "gneBUA39mnI", "Zce-QT7MGSE"]
@@ -97,7 +96,11 @@ Module.register("youtube", {
       var length = entertainmentVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
           this.vidIdRequested = entertainmentVidID[roundedRandom];
-          this.getData();
+          this.getData("https://www.youtube.com/embed/");
+
+    }else if(identifier === "BLANK"){
+      this.src = "about:blank";
+      this.getData();
     }
   }
 });
