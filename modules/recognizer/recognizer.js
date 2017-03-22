@@ -3,7 +3,8 @@ Module.register("recognizer",{
   start() {
     this.displayPicture = false;
     this.displayRecognition = false;
-    this.picture = '<img id="selfie" src="./public/webcam_pic.jpg" />';
+    this.pictureCount = 0;
+    this.picture = '<img src="./public/webcam_pic.jpg" />';
     console.log("Recognizer listening...");
     this.sendSocketNotification("RECOGNIZER_STARTUP");
     return;
@@ -19,6 +20,7 @@ Module.register("recognizer",{
     else if (notification === "SELFIE_IS_GO") {
       console.log("Begin Display Selfie");
       this.displayPicture = true;
+      this.picture = '<img src="'+payload+'" />'
       var self = this;
       setTimeout(function() { self.updateDom(1000); }, 2000);
     }
@@ -31,8 +33,11 @@ Module.register("recognizer",{
   notificationReceived: function(notification) {
     if(notification === "picture") {
       console.log("==== pic request ====");
-      this.sendSocketNotification("TAKE_SELFIE");
-
+      this.pictureCount++ ;
+      this.sendSocketNotification("TAKE_SELFIE", this.pictureCount);
+      this.show();
+    }else{
+      this.hide();
     }
 	},
 

@@ -7,7 +7,7 @@ const FormData = require('form-data');
 
 module.exports = NodeHelper.create({
 
-  socketNotificationReceived: function(notification) {
+  socketNotificationReceived: function(notification, payload) {
     if (notification === "RECOGNIZER_STARTUP"){
       console.log("Recognizer Node Helper initialized, awaiting Activation");
       this.sendSocketNotification("RECOGNIZER_CONNECTED");
@@ -15,9 +15,10 @@ module.exports = NodeHelper.create({
 
     else if (notification === "TAKE_SELFIE") {
       console.log("Webcam is being taken now");
-      var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic.jpg");
+      var imageSrc = "./public/webcam_pic"+payload+".jpg"
+      var image = exec("fswebcam -r 1280x720 --no-banner " + imageSrc);
 
-      this.sendSocketNotification("SELFIE_IS_GO");
+      this.sendSocketNotification("SELFIE_IS_GO", imageSrc);
     }
 
     // else if(notification === "RECOGNIZE_PICTURE") {
