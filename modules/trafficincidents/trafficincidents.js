@@ -3,8 +3,8 @@ Module.register("trafficincidents", {
   defaults: {
     baseUrl: "http://www.mapquestapi.com/traffic/v2/incidents?key=",
     CK: "0MfvxPkvBhP7qwk0n7uNKAxVZzlSBXkQ",
-    TL: "40.71",
-    TR: "-73.97",
+    TL: "40.77",
+    TR: "-73.92",
     BL: "40.67",
     BR: "-74.02"
   },
@@ -52,7 +52,8 @@ Module.register("trafficincidents", {
   },
 
   notificationReceived: function(notification){
-    if(notification === "traffic"){
+    var notArr = notification.split(" ");
+    if(notArr.includes("traffic")){
       this.sendSocketNotification("NEED_UPDATES", this.defaults);
       this.show();
     }else{
@@ -64,10 +65,16 @@ Module.register("trafficincidents", {
     Log.log("This is for testing");
     if(notification === "TRAFFIC_ALERTS"){
       var parsedData = payload;
-	debugger;
-        for(i=0; i<3; i++){
-          this.incidents.push(parsedData["incidents"][i]["fullDesc"])
+      if(parsedData["incidents"].length === 0){
+        this.incidents.push("There are no alerts for traffic in the nearby area")
+      }else if(parsedData["incidents"].length < 5){
+        for(i=0; i < parsedData["incidents"].length; i++){
+          this.incidents.push(parsedData["incidents"][i]["shortDesc"])
+      }}else{
+        for(i=0; i<5; i++){
+          this.incidents.push(parsedData["incidents"][i]["shortDesc"])
         }
+      }
       this.updateDom(0);
       this.incidents = []
     }
