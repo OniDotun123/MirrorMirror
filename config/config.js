@@ -14,17 +14,17 @@ var config = {
 			module: 'clock',
 			position: 'top_left'
 		},
-  
+
     {
         module: 'currentweather',
         position: 'top_left',
         header: "New York City",
-        
+
     },
 
     {
       module: 'recognizer',
-      position: 'middle_center'    
+      position: 'middle_center'
     },
 
     {
@@ -50,7 +50,7 @@ var config = {
     {
 
       module: 'youtube',
-      position: 'bottom_left'
+      position: 'middle_center'
 
     },
     {
@@ -64,13 +64,13 @@ var config = {
     },
     {
 	module: 'trafficincidents',
-	position: 'middle_center',
+	position: 'bottom_right',
 	header: 'Traffic'
     },
     {
       module: 'jokes',
-      position: 'middle_center',
-      header: 'Jokes By Ron Swanson'
+      position: 'bottom_right',
+      header: 'Joke'
 		},
     {
         module: 'conversation'
