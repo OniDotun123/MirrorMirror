@@ -25,9 +25,10 @@ Module.register("recognizer",{
       setTimeout(function() { self.updateDom(1000); }, 2000);
     }
 
-    // else if (notification === "RECOGNIZED") {
-    //   console.log("==== RECOGNITION RECEIVED =========")
-    // }
+    else if (notification === "RECOGNIZED") {
+      console.log("==== RECOGNITION RECEIVED =========")
+      console.log(payload);
+    }
   },
 
   notificationReceived: function(notification) {
