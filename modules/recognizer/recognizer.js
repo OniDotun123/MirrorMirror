@@ -35,7 +35,7 @@ Module.register("recognizer",{
 
     else if (notification === "recognize") {
       console.log("Recognizer begin recognition")
-      this.sendSocketNotification("TAKE_SELFIE");
+      this.sendSocketNotification("RECOGNIZE_PICTURE");
     }
 	},
 
