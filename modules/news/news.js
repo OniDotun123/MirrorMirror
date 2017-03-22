@@ -66,7 +66,7 @@ Module.register("news", {
   },
 
   notificationReceived: function(notification){
-      if(notification === "news"){
+      if(notification.split(" ").includes("news")){
         console.log("======== news request ========");
         this.sendSocketNotification("NEWS", this.defaults);
         this.show();

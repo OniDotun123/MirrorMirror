@@ -19,6 +19,9 @@ module.exports = NodeHelper.create({
       }else if(notification === "PLAY_ENTERTAINMENT"){
         console.log("getting entertainment...");
         this.sendSocketNotification("ENTERTAINMENT_PLAYBACK");
+      }else if(notification === "STOP_MEDIA"){
+        console.log("stopping media...");
+        this.sendSocketNotification("STOP_MEDIA");
       }
     }
 
