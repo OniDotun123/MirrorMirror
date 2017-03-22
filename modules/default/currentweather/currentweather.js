@@ -22,7 +22,7 @@ Module.register("currentweather", {
     this.low = null;
     this.forecast = null;
 
-    this.sendSocketNotification("LISTEN_WEATHER");
+    this.sendSocketNotification("WEATHER");
     this.loaded = false;
   },
 
@@ -60,13 +60,6 @@ Module.register("currentweather", {
     return div
   },
   
-  notificationReceived: function(notification){
-    Log.log("socket received from Node Helper");
-    if(notification === "weather"){
-      console.log("======== weather request ========");
-      this.sendSocketNotification("WEATHER");
-    }
-  },
 
   socketNotificationReceived: function(notification, payload){
     Log.log("socket received from Node Helper");
