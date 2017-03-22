@@ -24,27 +24,27 @@ module.exports = NodeHelper.create({
     else if(notification === "RECOGNIZE_PICTURE") {
       console.log("===Recognition picture is being taken now====");
       var imageSrc = "./public/webcam_pic"+payload+".jpg"
-      var image = exec("fswebcam -r 1280x720 --no-banner ./public/webcam_pic"+payload+".jpg");
+      var image = exec("fswebcam -r 1280x720 --no-banner " + imageSrc);
       console.log("===Calling for matches ====")
       var self = this;
       setTimeout(function() {
         console.log("Timeout called");
-        self.callForMatches(payload, function(body) {
+        self.callForMatches(imageSrc, function(body) {
           console.log("callForMatches called");
-          self.sendSocketNotification("RECOGNIZED", {imgSrc: payload, body: body});
+          self.sendSocketNotification("RECOGNIZED", {imgSrc: imageSrc, body: body});
         });
       }, 2000)
     }
 
   },
 
-  callForMatches: function(imgSrc, callback) {
+  callForMatches: function(imageSrc, callback) {
     console.log("Recognizer Node Helper is calling api")
 
     var options = {
         api_key: "9oOudn2moC5eM-pQwLy_ugUs6rYRT7aj",
         api_secret: "ROglv8QFta3JmGAppEYTpoPY68DjERzX",
-        image_file: fs.createReadStream(__dirname + '/../../public/webcam_pic'+payload+'.jpg'),
+        image_file: fs.createReadStream(__dirname + '/../../' + imageSrc),
         outer_id: "mirrormirror"
       };
 
