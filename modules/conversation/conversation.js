@@ -6,10 +6,7 @@ Module.register("conversation",{
 
   socketNotificationReceived: function(notification, payload){
         if (notification === "KEYWORD_SPOTTED"){
-            //Broadcast the message
-            console.log("@@@@@@@@@@@@@conversation received notification@@@@@@@@@@@@@@@@")
-            console.log("this is the payload: " + payload )
-            console.log("conversation.js is now sending a notification across socket")
+            console.log("Conversation received notification: " + payload)
             this.sendNotification(payload, {type: "notification"});
         }
 	},
@@ -19,7 +16,6 @@ Module.register("conversation",{
         var header = document.createElement("header");
         header.innerHTML = "";
         wrapper.appendChild(header);
-
         return wrapper;
     }
 });

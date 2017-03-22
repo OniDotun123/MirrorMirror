@@ -37,6 +37,7 @@ var Server = function(config, callback) {
 	app.use("/modules", express.static(path.resolve(global.root_path + "/modules")));
 	app.use("/vendor", express.static(path.resolve(global.root_path + "/vendor")));
 	app.use("/translations", express.static(path.resolve(global.root_path + "/translations")));
+	app.use("/public", express.static(path.resolve(global.root_path + "/public")));
 
 	app.get("/version", function(req,res) {
 		res.send(global.version);

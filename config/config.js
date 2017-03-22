@@ -21,8 +21,13 @@ var config = {
         header: "New York City",
         
     },
-    {
 
+    {
+      module: 'recognizer',
+      position: 'middle_center'    
+    },
+
+    {
         module: 'news',
         position: 'bottom_right',
         header: "News"
@@ -31,7 +36,7 @@ var config = {
 
      {
          module: 'maps',
-        	 
+
          position: 'middle_center',
          config: {
            apikey: 'AIzaSyA60mxJ7eqA6zxthZ7JE44uomf5TTcnOKA',
@@ -70,6 +75,7 @@ var config = {
     {
         module: 'conversation'
     },
+
   ]
 
 };
