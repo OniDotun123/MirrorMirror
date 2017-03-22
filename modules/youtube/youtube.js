@@ -38,7 +38,7 @@ Module.register("youtube", {
   },
 
   notificationReceived: function(notification){
-    notification = "stop"
+  
     if (notification.split(" ").includes("stop")){
       this.sendSocketNotification("STOP_MEDIA");
     }else if(notification.split(" ").includes("music")){
