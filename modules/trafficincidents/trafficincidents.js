@@ -13,9 +13,9 @@ Module.register("trafficincidents", {
     return this.data.header //This is gonna be added in config.js file
   },
 
-  getTranslations: function(){
-    return false;
-  },
+  getStyles: function(){
+    return ['trafficincidents.css']
+  }
 
   start: function(){
 
@@ -39,6 +39,7 @@ Module.register("trafficincidents", {
     div.className = "traffic-display"
 
     var ol = document.createElement("ol");
+    ol.className = "traffic-incidents"
 
     for(i=0; i < this.incidents.length; i++){
       var li = document.createElement("li");
