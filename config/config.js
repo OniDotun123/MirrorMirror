@@ -74,7 +74,7 @@ var config = {
         config: {
           style: 'border:none;overflow:hidden',
           width: "540",
-          height: "1500"
+          height: "1700"
         }
     },
     {
