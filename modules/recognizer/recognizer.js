@@ -37,7 +37,7 @@ Module.register("recognizer",{
         json = JSON.parse(payload);
         console.log("just json: " + json);
 
-        debugger;
+
 
         var user = this.interpretFaceToken(json.results[0].face_token);
         if (json.results[0].confidence > 75) {
@@ -60,6 +60,7 @@ Module.register("recognizer",{
     }else if(notification === "recognize") {
       console.log("==== recognize request ====");
       this.picture = "Recognizing..."
+      this.updateDom;
       this.sendSocketNotification("RECOGNIZE_PICTURE", this.pictureCount);
       this.show();
     }else{
@@ -75,7 +76,7 @@ Module.register("recognizer",{
       wrapper.innerHTML = this.picture;
       return wrapper;
     }
-
+    wrapper.innerHTML = "";
     return wrapper;
   },
 
