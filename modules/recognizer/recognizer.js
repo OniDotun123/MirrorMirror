@@ -39,10 +39,10 @@ Module.register("recognizer",{
         console.log("json.results[0].confidence: " + json.results[0].confidence);
         console.log("json.results[0].face_token: " + json.results[0].face_token);
         console.log("confidence boolean: " + (json.results[0].confidence > 75));
-        var user = this.interpretFaceToken(json.results[0].face_token)
+        var user = this.interpretFaceToken(json.results[0].face_token);
         if (json.results[0].confidence > 75) {
-          this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
-        }else { this.picture = '<p> Unable to recognize you clearly </p>' }
+          this.picture = '<p> Successfully logged in, Welcome '+user+' </p>';
+        }else { this.picture = '<p> Unable to recognize you clearly </p>'; }
       }
 
       var self = this;
