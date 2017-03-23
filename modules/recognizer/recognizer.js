@@ -22,7 +22,7 @@ Module.register("recognizer",{
       this.displayPicture = true;
       this.picture = '<img src="'+payload+'" />'
       var self = this;
-      setTimeout(function() { self.updateDom(1000); }, 10);
+      setTimeout(function() { self.updateDom(1); }, 2000);
     }
 
     else if (notification === "RECOGNIZED") {
