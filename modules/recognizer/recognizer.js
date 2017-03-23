@@ -37,7 +37,7 @@ Module.register("recognizer",{
         console.log("json.results[0].confidence: " + json.results[0].confidence);
         console.log("json.results[0].face_token: " + json.results[0].face_token);
         console.log("confidence boolean: " + (json.results[0].confidence > 75));
-        var user = json.results[0].face_token
+        var user = this.interpretFaceToken(json.results[0].face_token)
         if (json.results[0].confidence > 75) {
           this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
         }else { this.picture = '<p> Unable to recognize you clearly </p>' }
@@ -77,6 +77,19 @@ Module.register("recognizer",{
     return wrapper;
   },
 
+  interpretFaceToken: function (faceToken) {
+    if (faceToken === "4ff8954b037753c93a97abf1aec05c3c" || faceToken === "d7406353e69aefe176a4f2763b807dbd" || faceToken === "7c025f7fce64282bf80af63d2460e519" || faceToken === "06ccf22eb6b5a68c853d0e0b37fba45f" ) {
+      return "Karan";
+    } else if (faceToken === "7b2be0194606abf5830562d8c5943dbd" || faceToken === "1db906899f4c71fbffaa07bb1ea360f9" || faceToken === "11b210d08a3d5057e578cd12dddb2e93" || faceToken === "9a037d7e5411e2dd923873079a6119b8" ) {
+      return "Jordan";
+    } else if (faceToken === "465335005dc7c038b519d055f3cab979" || faceToken === "5560e080d0bc6b59d7de80187ab2de1f" || faceToken === "6f12b3d61fb15cb454fe95e48385713c" || faceToken === "7963fa02a1ecde5284394261bd134531") {
+      return "Dotun";
+    } else if (faceToken === "8d41b90aabb213b36e06b33afdbf7278" || faceToken === "866d2d0ddf6c0e7616fee1138020d167" || faceToken === "672ccbc7312d1f664b5e2ca17d0310c9" || faceToken === "82111fc4f4c418e95c67d2e2adbf7c9d") {
+      return "Tatiana";
+    } else if (faceToken === "70623033ceb93bb609b4e6c09006789a" || faceToken === "8be2dda4007bb4ce0802a80a74e51d7d" || faceToken === "c31376c1c9721ba3f207cac08c0878d9" || faceToken === "ac8ab249bd4f713c46b88cb68d91a610") {
+      return "Eric";
+    }
+  }
 
 
 
