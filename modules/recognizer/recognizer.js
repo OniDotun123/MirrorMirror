@@ -33,6 +33,7 @@ Module.register("recognizer",{
         this.picture = '<p> Server is Overloaded, Try again in a minute </p>'
         var self = this;
         setTimeout(function() { self.show(); self.updateDom(1000); }, 2000);
+        setTimeout(function() { self.picture = "<p> Recognizing </p>" }, 5000)
       } else {
         json = JSON.parse(payload);
         console.log("just json: " + json);
