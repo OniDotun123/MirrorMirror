@@ -44,7 +44,7 @@ Module.register("recognizer",{
       }
 
       var self = this;
-      setTimeout(function() { self.updateDom(1000); }, 2000);
+      setTimeout(function() { this.show(); self.updateDom(1000); }, 2000);
 
     }
   },
