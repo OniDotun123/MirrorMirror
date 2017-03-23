@@ -36,9 +36,9 @@ Module.register("recognizer",{
       } else {
         json = JSON.parse(payload);
         console.log("just json: " + json);
-        console.log("json.results[0].confidence: " + json.results[0].confidence);
-        console.log("json.results[0].face_token: " + json.results[0].face_token);
-        console.log("confidence boolean: " + (json.results[0].confidence > 75));
+
+        debugger;
+
         var user = this.interpretFaceToken(json.results[0].face_token);
         if (json.results[0].confidence > 75) {
           this.picture = '<p> Successfully logged in, Welcome '+user+' </p>';
