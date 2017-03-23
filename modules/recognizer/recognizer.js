@@ -61,7 +61,7 @@ Module.register("recognizer",{
     }else if(notification === "recognize") {
       console.log("==== recognize request ====");
       this.picture = "Recognizing..."
-      this.updateDom;
+      this.updateDom();
       this.sendSocketNotification("RECOGNIZE_PICTURE", this.pictureCount);
       this.show();
     }else{
