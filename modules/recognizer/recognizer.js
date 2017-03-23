@@ -35,16 +35,16 @@ Module.register("recognizer",{
         json = JSON.parse(payload);
         console.log("just json: " + json);
         console.log("json.results[0].confidence: " + json.results[0].confidence);
-        console.log("json.results[0].face_token: " + json.results[0]);
+        console.log("json.results[0].face_token: " + json.results[0].face_token);
         console.log("confidence boolean: " + (json.results[0].confidence > 75));
         var user = json.results[0].face_token
-        if (json.results[0].confidence >= 75) {
+        if (json.results[0].confidence > 75) {
           this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
-        }
+        }else { this.picture = '<p> Unable to recognize you clearly </p>' }
       }
 
       var self = this;
-      setTimeout(function() { this.show(); self.updateDom(1000); }, 2000);
+      setTimeout(function() { self.show(); self.updateDom(1000); }, 2000);
 
     }
   },
