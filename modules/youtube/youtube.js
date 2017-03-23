@@ -110,7 +110,7 @@ Module.register("youtube", {
           this.getData();
 
     }else if(identifier === "O"){
-      var motivationVidID = ["ZXsQAXx_ao0", "WxOFvpplvAM", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "CPQ1budJRIQ", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0"];
+      var motivationVidID = ["ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0", "ZXsQAXx_ao0"];
 
       var length = motivationVidID.length,
           roundedRandom = Math.floor(Math.random()*(length));
