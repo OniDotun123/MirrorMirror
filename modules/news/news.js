@@ -84,6 +84,7 @@ Module.register("news", {
         }
         this.attributionLink = "powered by News API";
         this.updateDom();
+        this.headlines = []
     }
   }
 
