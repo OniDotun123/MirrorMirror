@@ -28,15 +28,10 @@ module.exports = NodeHelper.create({
       console.log("===Calling for matches ====")
       var self = this;
 
-//       setTimeout(function() {
-//         console.log("Timeout called");
-        self.callForMatches(imageSrc, function(body) {
-          console.log("callForMatches called" + body);
-          self.sendSocketNotification("RECOGNIZED", body);
-        });
-
-//       }, 2000)
-
+      self.callForMatches(imageSrc, function(body) {
+        console.log("callForMatches called" + body);
+        self.sendSocketNotification("RECOGNIZED", body);
+      });
     }
 
   },

@@ -22,7 +22,7 @@ Module.register("recognizer",{
       this.displayPicture = true;
       this.picture = '<img src="'+payload+'" />'
       var self = this;
-      setTimeout(function() { self.updateDom(1000); }, 2000);
+      setTimeout(function() { self.updateDom(1); }, 2000);
     }
 
     else if (notification === "RECOGNIZED") {
@@ -34,14 +34,12 @@ Module.register("recognizer",{
         var self = this;
         setTimeout(function() { self.show(); self.updateDom(1000); }, 2000);
         setTimeout(function() { self.picture = "<p> Recognizing </p>" }, 5000)
-      } else {
+      }else {
         json = JSON.parse(payload);
-        console.log("just json: " + json);
-
-
+        console.log("== JSON response received ==");
 
         var user = this.interpretFaceToken(json.results[0].face_token);
-        if (json.results[0].confidence > 75) {
+        if (json.results[0].confidence > 75 && user) {
           this.picture = '<p> Successfully logged in, Welcome '+user+' </p>';
         }else { this.picture = '<p> Unable to recognize you clearly </p>'; }
       }
