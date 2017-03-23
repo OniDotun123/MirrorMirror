@@ -31,6 +31,8 @@ Module.register("recognizer",{
 
       if (!payload || payload.charAt(0) === '<') {
         this.picture = '<p> Server is Overloaded, Try again in a minute </p>'
+        var self = this;
+        setTimeout(function() { self.show(); self.updateDom(1000); }, 2000);
       } else {
         json = JSON.parse(payload);
         console.log("just json: " + json);
