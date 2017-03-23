@@ -34,12 +34,12 @@ Module.register("recognizer",{
       } else {
         json = JSON.parse(payload);
         console.log("just json: " + json);
-        console.log("json.results: " + json.results);
-        console.log("json.results[0]: " + json.results[0]);
         console.log("json.results[0].confidence: " + json.results[0].confidence);
+        console.log("json.results[0].face_token: " + json.results[0]);
+        console.log("confidence boolean: " + (json.results[0].confidence > 75));
         var user = json.results[0].face_token
         if (json.results[0].confidence >= 75) {
-          this.picture = '<h3> Successfully logged in, Welcome '+user+' </h3>'
+          this.picture = '<p> Successfully logged in, Welcome '+user+' </p>'
         }
       }
 
