@@ -9,3 +9,16 @@
 <li>User can ask Mirror for to play music and videos</li>
 <li>User can ask Mirror to Tell a Joke.</li>
 </ul>
+
+<hr>
+
+<h2>Technologies Used</h2>
+<ul>
+<li>IBM Watson Speech to Text</li>
+<li>IBM Watson Text to Speech</li>
+<li>IBM Watson Conversation</li>
+<li>HTML, CSS, Javascript</li>
+<li>Node.js</li>
+<li>Express.js</li>
+
+</ul>
