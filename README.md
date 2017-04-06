@@ -14,11 +14,13 @@
 
 <h2>Technologies Used</h2>
 <ul>
+<li>Raspberry Pi</li>
 <li>IBM Watson Speech to Text</li>
 <li>IBM Watson Text to Speech</li>
 <li>IBM Watson Conversation</li>
 <li>HTML, CSS, Javascript</li>
 <li>Node.js</li>
 <li>Express.js</li>
-
+<li>Socket.io</li>
+<li>Electron</li>
 </ul>
