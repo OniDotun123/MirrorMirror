@@ -26,4 +26,4 @@
 </ul>
 
 <h2> Demonstration </h2>
-<a href="https://drive.google.com/file/d/0B9eVEaOOI35QeXJQczFyTm84N3M/view">
+<h3><a href="https://drive.google.com/file/d/0B9eVEaOOI35QeXJQczFyTm84N3M/view">Click here for a demonstration</a></h3>
